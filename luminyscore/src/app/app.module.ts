@@ -12,6 +12,9 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MoncompteComponent } from './moncompte/moncompte.component';
+import { ScoreViewComponent } from './score-view/score-view.component';
+import { ScoreComponent } from './score/score.component';
+import { ScoreService } from './services/score.service';
 
 
 
@@ -23,6 +26,8 @@ import { MoncompteComponent } from './moncompte/moncompte.component';
     EditStudentComponent,
     NewUserComponent,
     MoncompteComponent,
+    ScoreViewComponent,
+    ScoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,7 @@ import { MoncompteComponent } from './moncompte/moncompte.component';
     HttpClientModule
 
   ],
-  providers: [StudentService,AuthService,UserService],
+  providers: [StudentService,AuthService,UserService,ScoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

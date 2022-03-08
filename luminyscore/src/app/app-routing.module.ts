@@ -9,14 +9,14 @@ import { AuthGuard } from './services/auth-guard.service';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { NewUserComponent } from './new-user/new-user.component';
-import { ResultViewComponent } from './result/result.component';
+import { ScoreViewComponent } from './score-view/score-view.component';
 import { MoncompteComponent } from './moncompte/moncompte.component';
 
 
 const appRoutes: Routes =  [
   {path: '',pathMatch: 'full',redirectTo: 'auth'},
   { path: 'students',canActivate: [AuthGuard], component: StudentViewComponent },
-  { path: 'result',canActivate: [AuthGuard], component: ResultViewComponent },
+  { path: 'score',canActivate: [AuthGuard], component: ScoreViewComponent },
   { path: 'compte',canActivate: [AuthGuard], component: MoncompteComponent },
 
   { path: 'users', canActivate: [AuthGuard],component: UserListComponent },

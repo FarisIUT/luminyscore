@@ -10,7 +10,7 @@ export class StudentService {
     {
       id: 1,
       name: 'Henri',
-      status: 'present'
+      status: 'present',
     },
     {
       id: 2,
