@@ -16,6 +16,7 @@ export class AppComponent implements OnDestroy, OnInit {
   secondes: number;
   counterSubscription: Subscription;
   authStatus: boolean = false;
+  isAdmin: boolean = true;
   constructor(private studentService: StudentService,private auth: AuthService,private rout: Router) {
     this.authStatus = this.auth.isAuth;
   }
@@ -28,13 +29,14 @@ export class AppComponent implements OnDestroy, OnInit {
       },
     );
   }
-ngOnDestroy(){
-  this.counterSubscription.unsubscribe();
-}
+
+  ngOnDestroy(){
+    this.counterSubscription.unsubscribe();
+  }
+
   onSignOut(){
     this.auth.signOut();
     this.authStatus = this.auth.isAuth;
-    this.authStatus = false;
     this.rout.navigate(['auth']);
   }
 
