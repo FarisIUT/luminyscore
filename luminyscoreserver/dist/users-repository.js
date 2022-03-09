@@ -50,9 +50,26 @@ const getUser = firstName => _esClient.default.search({
   handleElasticsearchError(error);
 });
 
+const remove = firstName => _esClient.default.deleteByQuery({
+  index,
+  refresh: 'true',
+  body: {
+    "query": {
+      "match": {
+        "firstName": {
+          "query": firstName
+        }
+      }
+    }
+  }
+}).then(response => response).catch(error => {
+  handleElasticsearchError(error);
+});
+
 var _default = {
   getUser,
   store,
-  getAll
+  getAll,
+  remove
 };
 exports.default = _default;

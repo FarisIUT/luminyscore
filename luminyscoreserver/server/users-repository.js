@@ -40,8 +40,26 @@ body: {
     handleElasticsearchError(error);
 });
 
+const remove = firstName => esClient.deleteByQuery({
+    index,
+        refresh: 'true',
+            body: {
+                "query": {
+                "match":{
+                "firstName":{
+                "query": firstName
+                }
+            }
+        }
+    },
+}).then(response => response).catch((error) => {
+    handleElasticsearchError(error);    
+});
+
+
 export default {
     getUser,
     store,
     getAll,
+    remove
 };

@@ -7,15 +7,16 @@
   <a [routerLink]="[id]">Détail</a> -->
   <div class="card match ">
     <h5 class="card-header">Match {{ id }}</h5>
-    <div class="card-body">
+    <div class="card-body card-body-faris">
+      <h5 class="centerdiv">{{ score1 }} - {{ score2 }}</h5>
       <div class="equipes">
-        <h5 class="card-title">equipe 1</h5>
-        <h5 class="card-title">equipe 2</h5>
+        <h5 class="card-title">{{ equipe1 }}</h5>
+        <h5 class="card-title">{{ equipe2 }}</h5>
       </div>
-        <p class="centerdiv">{{ id }} - 0</p>
 
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">infos ++</a>
+
+      <p class="card-text">Informations complémentaires liées aux matchs ci-dessus, voir ce qu'on peut mettre dedans.</p>
+      <a href="#" class="btn btn-primary">Plus d'infos</a>
     </div>
   </div>
 

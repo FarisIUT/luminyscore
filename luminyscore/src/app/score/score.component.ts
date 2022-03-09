@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { StudentService } from 'src/app/services/student.service';
+import { ScoreService } from '../services/score.service';
 
 @Component({
   selector: 'app-score',
@@ -8,33 +8,18 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class ScoreComponent implements OnInit {
 
-  @Input() studentName: string = '';
-  @Input() studentStatus: string = '';
+
+  @Input() score1: number;
+  @Input() score2: number;
+  @Input() equipe1: number;
+  @Input() equipe2: number;
   @Input() index: number;
   @Input() id: number
-  getColor() {
-    if(this.studentStatus === 'present') {
-      return 'green';
-    } else if(this.studentStatus === 'absent') {
-      return 'red';
-    } else {
-      return 'white';
-    }
+
+
+  constructor(private scoreService: ScoreService) {
   }
 
-  constructor(private studentService: StudentService) {
-  }
-  onSwitch() {
-    if (this.studentStatus === 'present') {
-      this.studentService.switchOffOne(this.index);
-    } else if (this.studentStatus === 'absent') {
-      this.studentService.switchOnOne(this.index);
-    }
-  }
-
-  getStatus() {
-    return this.studentStatus;
-  }
   ngOnInit(): void {
   }
 

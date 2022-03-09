@@ -51,9 +51,25 @@ async function userExist(firstName) {
   }
 }
 
+async function userDelete(req, res) {
+  try {
+    const userBool = await userExist(req.params.id);
+
+    if (!userBool) {
+      res.status(404).end();
+    } else {
+      const result = await _usersRepository.default.remove(req.params.id);
+      res.send(result);
+    }
+  } catch (e) {
+    res.status(error.status || 400).end();
+  }
+}
+
 var _default = {
   getUsers,
   create,
-  userExist
+  userExist,
+  userDelete
 };
 exports.default = _default;

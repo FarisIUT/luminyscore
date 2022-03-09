@@ -9,16 +9,22 @@ export class ScoreService {
   private scores = [
     {
       id: 1,
-      name: 'Henri',
+      equipe: {
+        0:'OM',
+        1:'OGC Nice'
+      },
       status: 'finish',
       score: {
-        equipe1:'1',
-        equipe2:'2',
+        0:'1',
+        1:'2',
       },
     },
     {
       id: 2,
-      name: 'Louis',
+      equipe: {
+        0:'PSG',
+        1:'Real Madrid'
+      },
       status: 'to come',
       score: {
         0:'4',
@@ -27,7 +33,10 @@ export class ScoreService {
     },
     {
       id: 3,
-      name: 'Philippe',
+      equipe: {
+        0:'FC Nantes',
+        1:'OL'
+      },
       status: 'finish',
       score: {
         0:2,

@@ -41,5 +41,6 @@ usersRouter.get('/', _usersHandler.default.getUsers);
 usersRouter.post('/', _usersHandler.default.create);
 usersRouter.get('/', (0, _expressAsyncHandler.default)(_usersHandler.default.getUsers));
 usersRouter.post('/', (0, _expressAsyncHandler.default)(_usersHandler.default.create));
+usersRouter.delete('/:id', (0, _expressAsyncHandler.default)(_usersHandler.default.userDelete));
 var _default = usersRouter;
 exports.default = _default;

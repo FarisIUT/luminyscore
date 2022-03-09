@@ -14,6 +14,7 @@ async function getUsers(req, res) {
 }
 
 async function create(req, res) {
+
     res.set('Content-Type', 'application/json');
     try {
         const userBool = await userExist(req.body.firstName);
@@ -39,9 +40,25 @@ async function userExist (firstName) {
     }
 }
 
+async function userDelete(req, res) {
+    try {
+        const userBool = await userExist(req.params.id);
+        if(!userBool) {
+            res.status(404).end();
+        } else {
+            const result = await usersRep.remove(req.params.id);
+            res.send(result);
+        }
+    } catch (e) {
+        res.status(error.status || 400).end();
+    }
+}
+
+
 export default {
     getUsers,
     create,
     userExist,
+    userDelete
 };
 
