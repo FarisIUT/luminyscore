@@ -8,31 +8,41 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { NewUserComponent } from './new-user/new-user.component';
 import { ResultViewComponent } from './result/result.component';
 import { MoncompteComponent } from './moncompte/moncompte.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
-
-const appRoutes: Routes =  [
-  {path: '',pathMatch: 'full',redirectTo: 'auth'},
-  { path: 'students',canActivate: [AuthGuard], component: StudentViewComponent },
-  { path: 'result',canActivate: [AuthGuard], component: ResultViewComponent },
-  { path: 'compte',canActivate: [AuthGuard], component: MoncompteComponent },
-
-  { path: 'users', canActivate: [AuthGuard],component: UserListComponent },
-  { path: 'new-user', canActivate: [AuthGuard],component: NewUserComponent },
+const appRoutes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'auth' },
+  {
+    path: 'students',
+    canActivate: [AuthGuard],
+    component: StudentViewComponent,
+  },
+  { path: 'result', canActivate: [AuthGuard], component: ResultViewComponent },
+  { path: 'compte', canActivate: [AuthGuard], component: MoncompteComponent },
+  { path: 'users', canActivate: [AuthGuard], component: UserListComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'createaccount', component: CreateAccountComponent },
   { path: 'edit', canActivate: [AuthGuard], component: EditStudentComponent },
-  { path: 'students/:id',canActivate: [AuthGuard], component: SingleStudentComponent },
+  {
+    path: 'students/:id',
+    canActivate: [AuthGuard],
+    component: SingleStudentComponent,
+  },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' },
-
 ];
 
 @NgModule({
-  imports : [RouterModule.forRoot(appRoutes)],
-  exports : [RouterModule],
-  providers: [AuthGuard]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule],
+  providers: [AuthGuard],
 })
-export class AppRoutingModule { }
-export const routedComponents = [StudentViewComponent, AuthComponent, SingleStudentComponent,UserListComponent];
+export class AppRoutingModule {}
+export const routedComponents = [
+  StudentViewComponent,
+  AuthComponent,
+  SingleStudentComponent,
+  UserListComponent,
+];

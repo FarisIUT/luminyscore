@@ -8,12 +8,10 @@ import { StudentsComponent } from './students/students.component';
 import { StudentService } from 'src/app/services/student.service';
 import { AuthService } from './services/auth.service';
 import { EditStudentComponent } from './edit-student/edit-student.component';
-import { NewUserComponent } from './new-user/new-user.component';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MoncompteComponent } from './moncompte/moncompte.component';
-
-
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +19,8 @@ import { MoncompteComponent } from './moncompte/moncompte.component';
     StudentsComponent,
     routedComponents,
     EditStudentComponent,
-    NewUserComponent,
     MoncompteComponent,
+    CreateAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,10 +28,9 @@ import { MoncompteComponent } from './moncompte/moncompte.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
   ],
-  providers: [StudentService,AuthService,UserService],
-  bootstrap: [AppComponent]
+  providers: [StudentService, AuthService, UserService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
