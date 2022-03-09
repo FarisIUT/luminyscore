@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StudentsComponent } from './students/students.component';
@@ -12,6 +11,9 @@ import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MoncompteComponent } from './moncompte/moncompte.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { ScoreViewComponent } from './score-view/score-view.component';
+import { ScoreComponent } from './score/score.component';
+import { ScoreService } from './services/score.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     EditStudentComponent,
     MoncompteComponent,
     CreateAccountComponent,
+    ScoreViewComponent,
+    ScoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [StudentService, AuthService, UserService],
+  providers: [StudentService, AuthService, UserService, ScoreService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

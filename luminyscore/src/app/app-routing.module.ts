@@ -8,7 +8,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { ResultViewComponent } from './result/result.component';
+import { ScoreViewComponent } from './score-view/score-view.component';
 import { MoncompteComponent } from './moncompte/moncompte.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 
@@ -19,8 +19,9 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     component: StudentViewComponent,
   },
-  { path: 'result', canActivate: [AuthGuard], component: ResultViewComponent },
+  { path: 'score', canActivate: [AuthGuard], component: ScoreViewComponent },
   { path: 'compte', canActivate: [AuthGuard], component: MoncompteComponent },
+
   { path: 'users', canActivate: [AuthGuard], component: UserListComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'createaccount', component: CreateAccountComponent },

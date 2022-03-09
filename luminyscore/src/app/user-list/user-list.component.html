@@ -7,6 +7,7 @@
       Il a pris les options suivantes :
       <span *ngFor="let option of user.options">{{ option }} - </span>
     </p>
+    <button class="btn btn-primary" (click)="onSuppress(user.firstName)">Supprimer</button>
   </li>
   <a routerLink="/new-user">Nouvel utilisateur</a>
 </ul>

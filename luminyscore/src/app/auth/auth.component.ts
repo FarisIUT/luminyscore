@@ -20,10 +20,10 @@ export class AuthComponent implements OnInit {
   }
   onSignIn() {
     this.authService.signIn().then(() => {
-      alert('Sign in successful!');
+      //alert('Sign in successful!');
       this.authStatus = this.authService.isAuth;
 
-      this.router.navigate(['result']);
+      this.router.navigate(['score']);
       this.app.authStatus = true;
     });
   }
