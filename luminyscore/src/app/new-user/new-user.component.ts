@@ -37,8 +37,6 @@ export class NewUserComponent implements OnInit {
       formValue['firstName'],
       formValue['lastName'],
       formValue['email'],
-      formValue['diploma'],
-      formValue['options'] ? formValue['options'] : []
     );
     this.userService.addUser(newUser);
     this.router.navigate(['/users']);

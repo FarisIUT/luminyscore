@@ -10,7 +10,14 @@
       <input type="password" id="mdp" class="form-control" formControlName="mdp">
     </div>
   </div>
-  <button class="btn btn-success" *ngIf="!authStatus" (click)="onSignIn()">Se Connecter</button>
-  <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">Se Déconnecter</button>
+  <button class="btn btn-success" *ngIf="!authStatus" (click)="onSignIn()">
+    Se Connecter
+  </button>
+  <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">
+    Se Déconnecter
+  </button>
+  <button class="btn btn-success" (click)="onCreateAccount()">
+    S'inscrire
+  </button>
 </div>
 

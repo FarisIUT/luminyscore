@@ -4,12 +4,14 @@ import { User } from '../models/user.model';
 
 @Injectable()
 export class UserService {
-  private users: User[] = [new User('Charles', 'Quint', 'charles.quint@lesrois.fr', 'License 3 informatique', ['webapplication', 'baby-foot'])];
+  private users: User[] = [
+    new User('Charles', 'Quint', 'charles.quint@lesrois.fr'),
+  ];
 
   //users: User[];
   userSubject = new Subject<User[]>();
 
-  constructor(){}
+  constructor() {}
   emitUsers() {
     this.userSubject.next(this.users.slice());
   }
@@ -17,6 +19,4 @@ export class UserService {
     this.users.push(user);
     this.emitUsers();
   }
-
-
 }

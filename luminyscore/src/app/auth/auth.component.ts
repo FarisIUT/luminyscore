@@ -6,11 +6,14 @@ import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router, private app: AppComponent) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private app: AppComponent
+  ) {}
   authStatus: boolean = false;
   ngOnInit(): void {
     this.authStatus = this.authService.isAuth;
@@ -24,10 +27,12 @@ export class AuthComponent implements OnInit {
       this.app.authStatus = true;
     });
   }
-//   onSignOut() {
-//     this.authService.signOut();
-//     this.authStatus = this.authService.isAuth;
-//     this.app.authStatus = false;
-//  }
-
+  onCreateAccount() {
+    this.router.navigate(['createaccount']);
+  }
+  //   onSignOut() {
+  //     this.authService.signOut();
+  //     this.authStatus = this.authService.isAuth;
+  //     this.app.authStatus = false;
+  //  }
 }
