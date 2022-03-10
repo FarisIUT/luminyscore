@@ -1,4 +1,4 @@
-<ul class="list-group centerdiv">
+<ul class="list-group centerblock">
   <li class="list-group-item" *ngFor="let user of users">
     <h3>{{ user.firstName }} {{ user.lastName }}</h3>
     <p>{{ user.email }}</p>
@@ -9,5 +9,5 @@
     </p>
     <button class="btn btn-primary" (click)="onSuppress(user.firstName)">Supprimer</button>
   </li>
-  <a routerLink="/new-user">Nouvel utilisateur</a>
+  <a class='centerdiv' routerLink="/new-user">Nouvel utilisateur</a>
 </ul>

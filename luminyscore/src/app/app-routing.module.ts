@@ -11,6 +11,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { ScoreViewComponent } from './score-view/score-view.component';
 import { MoncompteComponent } from './moncompte/moncompte.component';
+import { SingleScoreComponent } from './single-score/single-score.component';
 
 
 const appRoutes: Routes =  [
@@ -24,6 +25,8 @@ const appRoutes: Routes =  [
   { path: 'auth', component: AuthComponent },
   { path: 'edit', canActivate: [AuthGuard], component: EditStudentComponent },
   { path: 'students/:id',canActivate: [AuthGuard], component: SingleStudentComponent },
+  { path: 'score/:id',canActivate: [AuthGuard], component: SingleScoreComponent },
+
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' },
 

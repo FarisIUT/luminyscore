@@ -34,6 +34,7 @@ async function create(req, res) {
       res.send({});
     } else {
       await _usersRepository.default.store(req.body);
+      console.log('test');
       res.send(firstName = 'ok');
     }
   } catch (e) {

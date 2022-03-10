@@ -15,6 +15,7 @@ import { MoncompteComponent } from './moncompte/moncompte.component';
 import { ScoreViewComponent } from './score-view/score-view.component';
 import { ScoreComponent } from './score/score.component';
 import { ScoreService } from './services/score.service';
+import { SingleScoreComponent } from './single-score/single-score.component';
 
 
 
@@ -28,6 +29,7 @@ import { ScoreService } from './services/score.service';
     MoncompteComponent,
     ScoreViewComponent,
     ScoreComponent,
+    SingleScoreComponent,
   ],
   imports: [
     BrowserModule,
