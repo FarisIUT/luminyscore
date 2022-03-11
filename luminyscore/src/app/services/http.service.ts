@@ -21,7 +21,9 @@ export class HttpService {
   public createUser(user): Observable<User> {
     return this.http.post<User>(this.serverUrl+'users', user, this.httpOptions);
   }
-
+  public getDataMatch(): Observable<any>{
+    return this.http.get(this.serverUrl+'score') ;
+  }
 
   public suppUser(firstName): Observable<any> {
     return this.http.delete<any>(this.serverUrl+'users/'+firstName, {observe: 'response'});

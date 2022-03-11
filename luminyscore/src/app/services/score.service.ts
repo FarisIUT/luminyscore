@@ -75,5 +75,7 @@ export class ScoreService {
     return student;
   }
 
-
+  getScore(){
+    return this.scores;
+  }
 }

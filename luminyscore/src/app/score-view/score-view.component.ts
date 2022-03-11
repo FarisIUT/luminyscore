@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { HttpService } from '../services/http.service';
 import { ScoreService } from '../services/score.service';
-import { StudentService } from '../services/student.service';
+
 @Component({
   selector: 'app-score-view',
   templateUrl: './score-view.component.html',
@@ -14,16 +15,17 @@ export class ScoreViewComponent implements OnInit {
   isAuth: boolean = false;
   lastUpdate = new Date();
   scoreSubscription: Subscription;
-  constructor(private scoreService: ScoreService) {
+  constructor(private scoreService: ScoreService,private http: HttpService) {
     setTimeout(() => {
       this.isAuth = true;
     }, 4000);
   }
     ngOnInit() {
-    this.scoreSubscription = this.scoreService.scoreSubject.subscribe(
+    this.scoreSubscription = this.http.getDataMatch().subscribe(
       (scores: any[]) => {
         this.scores = scores;
     });
+    //this.scores = this.scoreService.getScore();
     this.scoreService.emitStudentSubject();
   }
 

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { HttpService } from '../services/http.service';
 import { ScoreService } from '../services/score.service';
 
 @Component({
@@ -16,8 +18,8 @@ export class ScoreComponent implements OnInit {
   @Input() index: number;
   @Input() id: number
 
-
-  constructor(private scoreService: ScoreService) {
+  scoreSubscription: Subscription;
+  constructor(private scoreService: ScoreService,private http: HttpService) {
   }
 
   ngOnInit(): void {

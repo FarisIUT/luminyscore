@@ -24,7 +24,6 @@ const appRoutes: Routes =  [
   { path: 'new-user', canActivate: [AuthGuard],component: NewUserComponent },
 
   { path: 'compte', canActivate: [AuthGuard], component: MoncompteComponent },
-  { path: 'users', canActivate: [AuthGuard], component: UserListComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'createaccount', component: CreateAccountComponent },
   { path: 'edit', canActivate: [AuthGuard], component: EditStudentComponent },

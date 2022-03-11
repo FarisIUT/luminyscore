@@ -24,23 +24,6 @@ async function getUsers(req, res) {
   }
 }
 
-async function create(req, res) {
-  res.set('Content-Type', 'application/json');
-
-  try {
-    const userBool = await userExist(req.body.firstName);
-
-    if (userBool) {
-      res.send({});
-    } else {
-      await _usersRepository.default.store(req.body);
-      res.send(firstName = 'ok');
-    }
-  } catch (e) {
-    res.status(400).end();
-  }
-}
-
 async function userExist(firstName) {
   try {
     const result = await _usersRepository.default.getUser(firstName);
