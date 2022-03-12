@@ -14,6 +14,7 @@ export class AppComponent implements OnDestroy, OnInit {
   counterSubscription: Subscription;
   authStatus: boolean = false;
   isAdmin: boolean = true;
+
   constructor(
     private studentService: StudentService,
     private auth: AuthService,

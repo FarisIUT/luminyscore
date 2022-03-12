@@ -51,9 +51,7 @@ const getUser = (firstName) =>
       handleElasticsearchError(error);
     });
 
-
-
-    const getUserViaEmail = (email) =>
+const getUserViaEmail = (email) =>
   esClient
     .search({
       index,
@@ -97,5 +95,5 @@ export default {
   store,
   getAll,
   remove,
-  getUserViaEmail
+  getUserViaEmail,
 };

@@ -19,10 +19,11 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.userSubscription = this.httpService.getUsers().subscribe((users: User[]) => {
+    this.userSubscription = this.httpService
+      .getUsers()
+      .subscribe((users: User[]) => {
         this.users = users;
       });
-
   }
 
   onSuppress(firstName) {
@@ -37,7 +38,7 @@ export class UserListComponent implements OnInit, OnDestroy {
       if (result.status === 200) {
         this.ngOnInit();
       } else {
-        alert("l'utilisateeur n'existe pas !");
+        alert("l'utilisateur n'existe pas !");
       }
     });
   }

@@ -14,22 +14,33 @@ import { MoncompteComponent } from './moncompte/moncompte.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { SingleScoreComponent } from './single-score/single-score.component';
 
-const appRoutes: Routes =  [
-  {path: '',pathMatch: 'full',redirectTo: 'auth'},
-  { path: 'students',canActivate: [AuthGuard], component: StudentViewComponent },
-  { path: 'score',canActivate: [AuthGuard], component: ScoreViewComponent },
-  { path: 'compte',canActivate: [AuthGuard], component: MoncompteComponent },
+const appRoutes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'auth' },
+  {
+    path: 'students',
+    canActivate: [AuthGuard],
+    component: StudentViewComponent,
+  },
+  { path: 'score', canActivate: [AuthGuard], component: ScoreViewComponent },
+  { path: 'compte', canActivate: [AuthGuard], component: MoncompteComponent },
 
-  { path: 'users', canActivate: [AuthGuard],component: UserListComponent },
-  { path: 'new-user', canActivate: [AuthGuard],component: NewUserComponent },
-
+  { path: 'users', canActivate: [AuthGuard], component: UserListComponent },
+  { path: 'new-user', canActivate: [AuthGuard], component: NewUserComponent },
 
   { path: 'auth', component: AuthComponent },
   { path: 'createaccount', component: CreateAccountComponent },
   { path: 'edit', canActivate: [AuthGuard], component: EditStudentComponent },
 
-  { path: 'students/:id',canActivate: [AuthGuard], component: SingleStudentComponent },
-  { path: 'score/:id',canActivate: [AuthGuard], component: SingleScoreComponent },
+  {
+    path: 'students/:id',
+    canActivate: [AuthGuard],
+    component: SingleStudentComponent,
+  },
+  {
+    path: 'score/:id',
+    canActivate: [AuthGuard],
+    component: SingleScoreComponent,
+  },
 
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' },

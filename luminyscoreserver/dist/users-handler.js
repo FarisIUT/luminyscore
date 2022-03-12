@@ -14,7 +14,7 @@ async function getUsers(req, res) {
     const result = await _usersRepository.default.getAll();
     const finalArray = [];
 
-    for (let obj of result.body.hits.hits) {
+    for (let obj of result.hits.hits) {
       finalArray.push(obj._source);
     }
 
@@ -48,7 +48,7 @@ async function create(req, res) {
 async function userExist(firstName) {
   try {
     const result = await _usersRepository.default.getUser(firstName);
-    return result.body.hits.total.value > 0 ? true : false;
+    return result.hits.total.value > 0 ? true : false;
   } catch (e) {
     console.log("error getting user", e);
     return false;
@@ -59,17 +59,21 @@ async function checkAuth(email, mdp) {
   try {
     const result = await _usersRepository.default.getUserViaEmail(email);
 
-    if (result.body.hits.total.value > 0) {
-      if (result.body.hits.hits.mdp === mdp) {
-        return true;
+    if (result.hits.total.value > 0) {
+      if (result.hits.hits[0]._source.email === email) {
+        if (result.hits.hits[0]._source.mdp === mdp) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        false;
+        return false;
       }
     } else {
       return false;
     }
   } catch (e) {
-    console.log("error getting user", e, ' ', email, ' ', mdp);
+    console.log("error getting user", e, " ", email, " ", mdp);
     return false;
   }
 }

@@ -1,13 +1,19 @@
 <div class="centerdiv container">
   <div class="row">
     <div class="col-xs-12">
-      <h2 class="centerdiv">MATCH DU JOUR </h2>
+      <h2 class="centerdiv">MATCH DU JOUR</h2>
       <!-- <p>Mise à jour le {{ lastUpdate | date: "short" | lowercase }}</p> -->
       <section class="centerdiv">
-
-        <app-score *ngFor="let score of scores; let i = index" [index]=i [score1]="score.score[0]" [score2]="score.score[1]" [equipe1]="score.equipe[0]" [equipe2]="score.equipe[1]"
-          [studentStatus]="score.status" [id]="score.id"></app-score>
-
+        <app-score
+          *ngFor="let score of scores; let i = index"
+          [index]="i"
+          [score1]="score.score[0]"
+          [score2]="score.score[1]"
+          [equipe1]="score.equipe[0]"
+          [equipe2]="score.equipe[1]"
+          [studentStatus]="score.status"
+          [id]="score.id"
+        ></app-score>
       </section>
       <!-- <button class="btn btn-success" [disabled]="!isAuth" (click)="allPresent()">Tous Présents</button>
       <button class="btn btn-danger" [disabled]="!isAuth" (click)="allAbsent()">Tous Absent</button> -->
