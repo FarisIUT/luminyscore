@@ -13,7 +13,7 @@ app.use(_express.default.json());
 app.use(_express.default.static('./app/luminyscore'));
 app.use('/users', _usersRoutage.default);
 app.use('/score', _scoresRoutage.default);
-app.get('/', function (req, res) {
-  res.sendFile('index.html');
+app.get('/*', function (req, res) {
+  res.sendFile(__dirname + '/app/luminyscore/index.html');
 });
 app.listen(8080);

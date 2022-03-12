@@ -13,8 +13,8 @@ const request = require("request");
 
 let timestampTest = new Date();
 var FirstDay = Math.round(timestampTest.getTime() / 1000); //+ 90000000 pour plus 1 jour
+//console.log(FirstDay)
 
-console.log(FirstDay);
 var days = 0;
 
 function dateIterator(days) {
@@ -70,9 +70,9 @@ async function matchAdder() {
   });
   days++;
   setTimeout(matchAdder, 60000);
-}
+} //matchAdder();
 
-matchAdder();
+
 var _default = {
   matchAdder
 };
