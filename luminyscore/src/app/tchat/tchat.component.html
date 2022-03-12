@@ -1,0 +1,13 @@
+
+
+    <h2>Tchat</h2>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let message of srvMessage">
+        {{ message }}
+        </li>
+    <ul>
+    <input type="text" class="from-control" [(ngModel)]="messageToSend">
+    <button class="btn btn-success"
+    (click)="onSend()">
+    Envoyer
+    </button>

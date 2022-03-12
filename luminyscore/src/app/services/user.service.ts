@@ -5,7 +5,7 @@ import { User } from '../models/user.model';
 @Injectable()
 export class UserService {
   private users: User[] = [
-    new User('Charles', 'Quint', 'charles.quint@lesrois.fr'),
+    new User('Charles', 'Quint', 'charles.quint@lesrois.fr','pwd',false),
   ];
 
   //users: User[];

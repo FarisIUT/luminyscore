@@ -20,6 +20,7 @@ async function getUsers(req, res) {
 
     res.send(finalArray);
   } catch (e) {
+    console.log(e);
     res.status(400).end();
   }
 }
@@ -51,6 +52,42 @@ async function userExist(firstName) {
   }
 }
 
+async function checkAuth(email, mdp) {
+  try {
+    const result = await _usersRepository.default.getUser(email);
+
+    if (result.body.hits.total.value > 0) {
+      if (result.body.hits.hits.mdp === mdp) {
+        return true;
+      } else {
+        false;
+      }
+    } else {
+      return false;
+    }
+  } catch (e) {
+    console.log("error getting user", e);
+    return false;
+  }
+}
+
+async function signIn(req, res) {
+  try {
+    const authBool = await checkAuth(req.body.email, req.body.mdp);
+
+    if (authBool) {
+      res.send({
+        mdp: "ok"
+      });
+    } else {
+      res.send({});
+    }
+  } catch (e) {
+    console.log("error cheking for user credentials", e);
+    res.status(400).end();
+  }
+}
+
 async function userDelete(req, res) {
   try {
     const userBool = await userExist(req.params.id);
@@ -70,6 +107,7 @@ var _default = {
   getUsers,
   create,
   userExist,
-  userDelete
+  userDelete,
+  signIn
 };
 exports.default = _default;
