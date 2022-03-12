@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AppComponent } from '../app.component';
 import { HttpService } from '../services/http.service';
-import { User } from '../models/user.model';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-auth',
@@ -21,6 +21,7 @@ export class AuthComponent implements OnInit {
     private httpService: HttpService,
     private formBuilder: FormBuilder
   ) {}
+
   authStatus: boolean = false;
 
   initForm() {
@@ -29,12 +30,13 @@ export class AuthComponent implements OnInit {
       mdp: ['', [Validators.required, Validators.minLength]],
     });
   }
-  ngOnInit(): void {
-    this.authStatus = this.authService.isAuth;
+
+  ngOnInit() {
+    this.initForm();
   }
 
-  /*TODO*/
   onSignIn() {
+
     const formValue = this.authForm.value;
 
     const user = new User(
@@ -51,18 +53,28 @@ export class AuthComponent implements OnInit {
           alert('Connection effectuée');
           this.router.navigate(['/compte']);
         } else {
-          alert('Identifiant ou mot de passee incorrect');
+          alert('Identifiant ou mot de passe incorrect');
         }
       },
+      (e) => {
+        console.log('erreur', e);
+      }
     );
   }
+  tcheat(){
+    this.authStatus = true;
+    this.app.authStatus = true;
+    this.authService.isAuth = true
+    this.router.navigate(['/compte']);
 
+  }
   onCreateAccount() {
     this.router.navigate(['createaccount']);
   }
-    onSignOut() {
-      this.authService.signOut();
-      this.authStatus = this.authService.isAuth;
-      this.app.authStatus = false;
-   }
+
+  onSignOut() {
+    this.authService.signOut();
+    this.authStatus = this.authService.isAuth;
+    this.app.authStatus = false;
+  }
 }

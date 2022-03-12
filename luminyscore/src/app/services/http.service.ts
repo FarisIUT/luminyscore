@@ -19,10 +19,7 @@ export class HttpService {
 
   public signIn(user) {
     return this.http.post<User>(
-      this.serverUrl + 'users/signin',
-      user,
-      this.httpOptions
-    );
+      this.serverUrl + 'users/signin',user,this.httpOptions);
   }
 
   public getUsers() {
