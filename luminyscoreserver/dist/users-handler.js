@@ -15,7 +15,7 @@ async function getUsers(req, res) {
     const finalArray = [];
 
     for (let obj of result.body.hits.hits) {
-      finalArray.push(obj.source);
+      finalArray.push(obj._source);
     }
 
     res.send(finalArray);
@@ -26,7 +26,7 @@ async function getUsers(req, res) {
 }
 
 async function create(req, res) {
-  res.set('Content-Type', 'application/json');
+  res.set("Content-Type", "application/json");
 
   try {
     const userBool = await userExist(req.body.firstName);
@@ -35,9 +35,12 @@ async function create(req, res) {
       res.send({});
     } else {
       await _usersRepository.default.store(req.body);
-      res.send(firstName = 'ok');
+      res.send({
+        firstName: "ok"
+      });
     }
   } catch (e) {
+    console.log("error creating user", e);
     res.status(400).end();
   }
 }
@@ -47,14 +50,14 @@ async function userExist(firstName) {
     const result = await _usersRepository.default.getUser(firstName);
     return result.body.hits.total.value > 0 ? true : false;
   } catch (e) {
-    console.log('error getting user', e);
+    console.log("error getting user", e);
     return false;
   }
 }
 
 async function checkAuth(email, mdp) {
   try {
-    const result = await _usersRepository.default.getUser(email);
+    const result = await _usersRepository.default.getUserViaEmail(email);
 
     if (result.body.hits.total.value > 0) {
       if (result.body.hits.hits.mdp === mdp) {
@@ -66,7 +69,7 @@ async function checkAuth(email, mdp) {
       return false;
     }
   } catch (e) {
-    console.log("error getting user", e);
+    console.log("error getting user", e, ' ', email, ' ', mdp);
     return false;
   }
 }

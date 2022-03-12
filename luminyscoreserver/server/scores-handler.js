@@ -1,5 +1,23 @@
 import usersRep from './users-repository';
 
+
+async function create(req, res) {
+res.set("Content-Type", "application/json");
+    try {
+        const userBool = await matchExist(req.body.firstName);
+        if (userBool) {
+        res.send({});
+        } else {
+        await usersRep.store(req.body);
+        res.send({ firstName: "ok" });
+        }
+    } catch (e) {
+        console.log("error creating user", e);
+        res.status(400).end();
+    }
+}
+
+
 async function getUsers(req, res) {
     try {
         const result = await usersRep.getAll();
@@ -15,7 +33,7 @@ async function getUsers(req, res) {
 
 
 
-async function userExist (firstName) {
+async function matchExist (firstName) {
     try {
         const result = await usersRep.getUser(firstName);
         return result.body.hits.total.value > 0 ? true : false;

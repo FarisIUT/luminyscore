@@ -1,12 +1,17 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 const {
   match
 } = require("assert");
 
 const request = require("request");
 
-timestampTest = new Date();
+let timestampTest = new Date();
 var FirstDay = Math.round(timestampTest.getTime() / 1000); //+ 90000000 pour plus 1 jour
 
 console.log(FirstDay);
@@ -15,11 +20,11 @@ var days = 0;
 function dateIterator(days) {
   let timestamp = FirstDay + days * 86400; // jour de dÃ©part iteration dates
 
-  date = new Date(timestamp * 1000).toLocaleDateString("en-US");
-  year = new Date(timestamp * 1000).getFullYear();
-  month = new Date(timestamp * 1000).getMonth();
+  let date = new Date(timestamp * 1000).toLocaleDateString("en-US");
+  let year = new Date(timestamp * 1000).getFullYear();
+  let month = new Date(timestamp * 1000).getMonth();
   month++;
-  day = new Date(timestamp * 1000).getDate();
+  let day = new Date(timestamp * 1000).getDate();
 
   if (day < 10) {
     day = "0" + day;
@@ -50,12 +55,12 @@ function getOptions(paramsDate) {
 }
 
 async function matchAdder() {
-  options = getOptions(dateIterator(days));
+  let options = getOptions(dateIterator(days));
   console.log(options.qs.date);
   request(options, async function (error, response) {
     if (error) throw new Error(error);
 
-    for (u = 0; u < JSON.parse(response.body).results; u++) {
+    for (let u = 0; u < JSON.parse(response.body).results; u++) {
       let idHome = JSON.parse(response.body).response[u].teams.home.name;
       let idAway = JSON.parse(response.body).response[u].teams.away.name;
       let timestamp = JSON.parse(response.body).response[u].fixture.timestamp;
@@ -68,3 +73,7 @@ async function matchAdder() {
 }
 
 matchAdder();
+var _default = {
+  matchAdder
+};
+exports.default = _default;

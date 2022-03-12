@@ -9,6 +9,26 @@ var _usersRepository = _interopRequireDefault(require("./users-repository"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+async function create(req, res) {
+  res.set("Content-Type", "application/json");
+
+  try {
+    const userBool = await matchExist(req.body.firstName);
+
+    if (userBool) {
+      res.send({});
+    } else {
+      await _usersRepository.default.store(req.body);
+      res.send({
+        firstName: "ok"
+      });
+    }
+  } catch (e) {
+    console.log("error creating user", e);
+    res.status(400).end();
+  }
+}
+
 async function getUsers(req, res) {
   try {
     const result = await _usersRepository.default.getAll();
@@ -24,7 +44,7 @@ async function getUsers(req, res) {
   }
 }
 
-async function userExist(firstName) {
+async function matchExist(firstName) {
   try {
     const result = await _usersRepository.default.getUser(firstName);
     return result.body.hits.total.value > 0 ? true : false;
