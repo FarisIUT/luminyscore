@@ -43,19 +43,27 @@ async function userExist(firstName) {
 async function checkAuth(email, mdp) {
   try {
     const result = await usersRep.getUserViaEmail(email);
-
+    const user = [];
     if (result.hits.total.value > 0) {
       if (result.hits.hits[0]._source.email === email) {
         if (result.hits.hits[0]._source.mdp === mdp) {
-          return true;
+          user[0] = true;
+          user[1] = result.hits.hits[0]._source;
+          return user;
         } else {
-          return false;
+          user[0] = false;
+          user[1] = null;
+          return user;
         }
       } else {
-        return false;
+        user[0] = false;
+        user[1] = null;
+        return user;
       }
     } else {
-      return false;
+      user[0] = false;
+      user[1] = null;
+      return user;
     }
   } catch (e) {
     console.log("error getting user", e, " ", email, " ", mdp);
@@ -65,9 +73,9 @@ async function checkAuth(email, mdp) {
 
 async function signIn(req, res) {
   try {
-    const authBool = await checkAuth(req.body.email, req.body.mdp);
-    if (authBool) {
-      res.send({ mdp: "ok" });
+    const auth = await checkAuth(req.body.email, req.body.mdp);
+    if (auth[0]) {
+      res.send({ user: auth[1] });
     } else {
       res.send({});
     }
