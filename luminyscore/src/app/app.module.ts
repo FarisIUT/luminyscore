@@ -3,10 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StudentsComponent } from './students/students.component';
-import { StudentService } from 'src/app/services/student.service';
+
 import { AuthService } from './services/auth.service';
-import { EditStudentComponent } from './edit-student/edit-student.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MoncompteComponent } from './moncompte/moncompte.component';
 import { ScoreViewComponent } from './score-view/score-view.component';
@@ -17,6 +15,8 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { UserService } from './services/user.service';
 import { TchatComponent } from './tchat/tchat.component';
+import { LeaguesManagerComponent } from './leagues-manager/leagues-manager.component';
+
 
 
 
@@ -24,9 +24,7 @@ import { TchatComponent } from './tchat/tchat.component';
 @NgModule({
   declarations: [
     AppComponent,
-    StudentsComponent,
     routedComponents,
-    EditStudentComponent,
     MoncompteComponent,
     ScoreViewComponent,
     ScoreComponent,
@@ -34,6 +32,7 @@ import { TchatComponent } from './tchat/tchat.component';
     NewUserComponent,
     CreateAccountComponent,
     TchatComponent,
+    LeaguesManagerComponent,
 
   ],
   imports: [
@@ -44,7 +43,7 @@ import { TchatComponent } from './tchat/tchat.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [StudentService,AuthService,UserService,ScoreService],
+  providers: [AuthService,UserService,ScoreService],
   bootstrap: [AppComponent]
 
 })

@@ -16,7 +16,10 @@ export class ScoreComponent implements OnInit {
   @Input() equipe1: number;
   @Input() equipe2: number;
   @Input() index: number;
-  @Input() id: number
+  @Input() id: number;
+  @Input() date: string;
+  @Input() status: string;
+  @Input() idSub: number;
 
   scoreSubscription: Subscription;
   constructor(private scoreService: ScoreService,private http: HttpService) {

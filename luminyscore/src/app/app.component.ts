@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit, Input, OnDestroy } from '@angular/core';
-import { StudentService } from 'src/app/services/student.service';
 import { Subscription, interval, of, map } from 'rxjs';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
@@ -15,7 +14,6 @@ export class AppComponent implements OnDestroy, OnInit {
   authStatus: boolean = false;
   isAdmin: boolean = true;
   constructor(
-    private studentService: StudentService,
     private auth: AuthService,
     private rout: Router
   ) {

@@ -1,9 +1,0 @@
-<li [ngClass]="{'list-group-item': true, 'list-group-item-success': studentStatus === 'present', 'list-group-item-danger': studentStatus === 'absent'}">
-  <h4 [ngStyle]="{color: getColor()}">étudiant : {{ studentName }} -- Statut : {{ getStatus() }}</h4>
-  <input type="text" class="form-control" [(ngModel)]="studentName">
-  <input type="text" class="form-control" [(ngModel)]="studentStatus">
-  <button class="btn btn-sm btn-success" *ngIf="studentStatus === 'absent'" (click)="onSwitch()">Présent</button>
-  <button class="btn btn-sm btn-danger" *ngIf="studentStatus === 'present'" (click)="onSwitch()">Absent</button>
-  <a [routerLink]="[id]">Détail</a>
-</li>
-<!--<div style="width:20px;height:20px;background-color:red;" *ngIf="studentStatus === 'absent'"></div>-->

@@ -35,6 +35,7 @@ export class HttpService {
   }
 
   public getDataMatch(): Observable<any>{
+    console.log("appel serveur data match")
     return this.http.get(this.serverUrl+'score') ;
   }
 
