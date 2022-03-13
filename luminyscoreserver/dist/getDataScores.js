@@ -12,13 +12,13 @@ const {
 const request = require("request");
 
 let timestampTest = new Date();
-var FirstDay = Math.round(timestampTest.getTime() / 1000); //+ 90000000 pour plus 1 jour
+var FirstDay = Math.round(1647043200 //timestampTest.getTime() / 1000
+); //+ 90000000 pour plus 1 jour
 
-console.log(FirstDay);
-var days = 0;
+const leagues = [140, 78, 39];
 
-function dateIterator(days) {
-  let timestamp = FirstDay + days * 86400; // jour de dÃ©part iteration dates
+function dateIterator() {
+  let timestamp = FirstDay; // jour de dÃ©part iteration dates
 
   let date = new Date(timestamp * 1000).toLocaleDateString("en-US");
   let year = new Date(timestamp * 1000).getFullYear();
@@ -38,13 +38,13 @@ function dateIterator(days) {
   return year + "-" + month + "-" + day;
 }
 
-function getOptions(paramsDate) {
+function getOptions(paramsDate, league) {
   return {
     'method': 'GET',
     'url': 'https://v3.football.api-sports.io/fixtures',
     qs: {
       date: paramsDate,
-      league: 2,
+      league: league,
       season: '2021'
     },
     'headers': {
@@ -55,25 +55,120 @@ function getOptions(paramsDate) {
 }
 
 async function matchAdder() {
-  let options = getOptions(dateIterator(days));
-  console.log(options.qs.date);
-  request(options, async function (error, response) {
-    if (error) throw new Error(error);
+  var matches = [];
+  var matches2 = [];
 
-    for (let u = 0; u < JSON.parse(response.body).results; u++) {
-      let idHome = JSON.parse(response.body).response[u].teams.home.name;
-      let idAway = JSON.parse(response.body).response[u].teams.away.name;
-      let timestamp = JSON.parse(response.body).response[u].fixture.timestamp;
-      console.log(idHome, " ", idAway, " ", timestamp);
-    } //console.log(JSON.parse(response.body));
+  for (let a = 0; a < leagues.length; a++) {
+    console.log("a " + a);
+    matches.push([]);
+    let options = getOptions(dateIterator(), leagues[a]);
+    var timestamps = [];
+    await new Promise(next => {
+      request(options, async function (error, response) {
+        if (error) throw new Error(error);
 
-  });
-  days++;
-  setTimeout(matchAdder, 60000);
+        for (let u = 0; u < JSON.parse(response.body).results; u++) {
+          let idHome = JSON.parse(response.body).response[u].teams.home.name;
+          let idAway = JSON.parse(response.body).response[u].teams.away.name;
+          let status = JSON.parse(response.body).response[u].fixture.status.long;
+          let timestamp = JSON.parse(response.body).response[u].fixture.timestamp;
+          let idSub = JSON.parse(response.body).response[u].fixture.id;
+          timestamps.push(timestamp);
+          let goalsHome = JSON.parse(response.body).response[u].goals.home;
+          let goalsAway = JSON.parse(response.body).response[u].goals.away;
+          let date = new Date(timestamp * 1000).toLocaleDateString("en-US");
+          let year = new Date(timestamp * 1000).getFullYear();
+          let month = new Date(timestamp * 1000).getMonth();
+          month++;
+          let day = new Date(timestamp * 1000).getDate();
+          let hours = new Date(timestamp * 1000).getHours();
+          let minutes = new Date(timestamp * 1000).getMinutes();
+
+          if (day < 10) {
+            day = "0" + day;
+          }
+
+          if (month < 10) {
+            month = "0" + month;
+          }
+
+          if (hours < 10) {
+            hours = "0" + hours;
+          }
+
+          if (minutes < 10) {
+            minutes = "0" + minutes;
+          }
+
+          date = day + "/" + month + "/" + year + " @ " + hours + ":" + minutes;
+          matches[a].push({
+            id: u,
+            idS: idSub,
+            equipe: {
+              0: idHome,
+              1: idAway
+            },
+            status: status,
+            score: {
+              0: goalsHome,
+              1: goalsAway
+            },
+            date: date,
+            timestamp: timestamp
+          });
+          matches2.push(idHome + "-" + idAway);
+          idSub++;
+        } //console.log(JSON.parse(response.body));
+
+
+        let Matches = [];
+        timestamps.sort();
+
+        for (let t = 0; t < matches[a].length; t++) {
+          for (let s = 0; s < timestamps.length; s++) {
+            if (timestamps[t] == matches[a][s].timestamp) {
+              Matches.push(matches[a][s]);
+              matches[a][s] = 0;
+            }
+          }
+        }
+
+        matches[a] = Matches;
+        next();
+      });
+    }); //console.log("from getData"+JSON.stringify(matches[0]))
+  } //console.log(matches2);
+
+
+  return matches;
 }
 
-matchAdder();
+async function getEvents(idMatch) {
+  var events;
+  let options = {
+    'method': 'GET',
+    'url': 'https://v3.football.api-sports.io/fixtures/events',
+    qs: {
+      'fixture': idMatch
+    },
+    'headers': {
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+      'x-rapidapi-key': '0bed05814d17f569c5688a84a318f638'
+    }
+  };
+  await new Promise(next => {
+    request(options, async function (error, response) {
+      if (error) throw new Error(error);
+      events = JSON.parse(response.body);
+      next();
+    });
+  });
+  return events;
+} //matchAdder();
+
+
 var _default = {
-  matchAdder
+  matchAdder,
+  getEvents
 };
 exports.default = _default;

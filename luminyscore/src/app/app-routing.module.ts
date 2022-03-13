@@ -1,46 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StudentViewComponent } from './student-view/student-view.component';
 import { AuthComponent } from './auth/auth.component';
-import { SingleStudentComponent } from './single-student/single-student.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 
 import { AuthGuard } from './services/auth-guard.service';
-import { EditStudentComponent } from './edit-student/edit-student.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { ScoreViewComponent } from './score-view/score-view.component';
 import { MoncompteComponent } from './moncompte/moncompte.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { SingleScoreComponent } from './single-score/single-score.component';
+import { LeaguesManagerComponent } from './leagues-manager/leagues-manager.component';
 
-const appRoutes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'auth' },
-  {
-    path: 'students',
-    canActivate: [AuthGuard],
-    component: StudentViewComponent,
-  },
-  { path: 'score', canActivate: [AuthGuard], component: ScoreViewComponent },
-  { path: 'compte', canActivate: [AuthGuard], component: MoncompteComponent },
 
-  { path: 'users', canActivate: [AuthGuard], component: UserListComponent },
-  { path: 'new-user', canActivate: [AuthGuard], component: NewUserComponent },
+
+const appRoutes: Routes =  [
+  {path: '',pathMatch: 'full',redirectTo: 'auth'},
+  { path: 'scores',canActivate: [AuthGuard], component: LeaguesManagerComponent  },
+  { path: 'compte',canActivate: [AuthGuard], component: MoncompteComponent },
+
+  { path: 'users', canActivate: [AuthGuard],component: UserListComponent },
+  { path: 'new-user', canActivate: [AuthGuard],component: NewUserComponent },
+
 
   { path: 'auth', component: AuthComponent },
   { path: 'createaccount', component: CreateAccountComponent },
-  { path: 'edit', canActivate: [AuthGuard], component: EditStudentComponent },
 
-  {
-    path: 'students/:id',
-    canActivate: [AuthGuard],
-    component: SingleStudentComponent,
-  },
-  {
-    path: 'score/:id',
-    canActivate: [AuthGuard],
-    component: SingleScoreComponent,
-  },
+  { path: 'scores/:id',canActivate: [AuthGuard], component: SingleScoreComponent },
 
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' },
@@ -53,8 +39,8 @@ const appRoutes: Routes = [
 })
 export class AppRoutingModule {}
 export const routedComponents = [
-  StudentViewComponent,
+  LeaguesManagerComponent,
   AuthComponent,
-  SingleStudentComponent,
+  SingleScoreComponent,
   UserListComponent,
 ];

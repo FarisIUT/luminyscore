@@ -1,16 +1,13 @@
 
   <div class="card match">
-    <h5 class="card-header">Match {{ id }}</h5>
+    <h5 class="card-header">{{date}}</h5>
     <div class="card-body card-body-faris">
       <h5 class="centerdiv">{{ score1 }} - {{ score2 }}</h5>
       <div class="equipes">
-        <h5 class="card-title">{{ equipe1 }}</h5>
-        <h5 class="card-title">{{ equipe2 }}</h5>
+        <h5 class="card-title">{{ equipe1 }} vs {{ equipe2 }}</h5>
       </div>
-
-
-      <p class="card-text">Informations complémentaires liées aux matchs ci-dessus, voir ce qu'on peut mettre dedans.</p>
-      <a [routerLink]="[id]" class="btn btn-primary">Plus d'infos</a>
+      <p class="card-text">{{status}}</p>
+      <a [routerLink]="[idSub]" class="btn btn-primary">Plus d'infos</a>
     </div>
   </div>
 

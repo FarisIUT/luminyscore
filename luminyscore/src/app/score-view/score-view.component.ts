@@ -10,27 +10,22 @@ import { ScoreService } from '../services/score.service';
 })
 export class ScoreViewComponent implements OnInit {
 
-  scores: any[];
+  @Input() scoresLeagues: any[];
   @Input() id: number
   isAuth: boolean = false;
   lastUpdate = new Date();
-  scoreSubscription: Subscription;
-  constructor(private scoreService: ScoreService,private http: HttpService) {
+  //scoreSubscription: Subscription;
+  scores: any;
+  constructor(private ScoreService: ScoreService,private http: HttpService) {
+    //console.log("from score-view construc"+this.scoresLeagues);
     setTimeout(() => {
       this.isAuth = true;
     }, 4000);
+
   }
     ngOnInit() {
-    this.scoreSubscription = this.http.getDataMatch().subscribe(
-      (scores: any[]) => {
-        this.scores = scores;
-    });
-    //this.scores = this.scoreService.getScore();
-    this.scoreService.emitStudentSubject();
-  }
-
-  ngOnDestroy() {
-    this.scoreSubscription.unsubscribe();
+    //console.log("from score-view ng on init"+this.scoresLeagues);
+    this.scores = this.ScoreService.getScore();
   }
 
 }
