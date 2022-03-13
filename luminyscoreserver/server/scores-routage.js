@@ -20,6 +20,8 @@ scoresRouter.get('/', function (req, res) {
   getDataScores.matchAdder().then((result)=>{console.log("from scores-routages "+result)})
   getDataScores.matchAdder().then((result)=>{res.send(result)})
 });
-
+scoresRouter.get('/events/:id', function (req, res) {
+  getDataScores.getEvents(req.params.id).then((result)=>{res.send(result)});
+})
 var _default = scoresRouter;
 exports.default = _default;

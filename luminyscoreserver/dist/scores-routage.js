@@ -34,5 +34,10 @@ scoresRouter.get('/', function (req, res) {
     res.send(result);
   });
 });
+scoresRouter.get('/events/:id', function (req, res) {
+  _getDataScores2.default.getEvents(req.params.id).then(result => {
+    res.send(result);
+  });
+});
 var _default = scoresRouter;
 exports.default = _default;

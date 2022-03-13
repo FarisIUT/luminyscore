@@ -12,7 +12,9 @@ const {
 const request = require("request");
 
 let timestampTest = new Date();
-var FirstDay = Math.round(timestampTest.getTime() / 1000); //+ 90000000 pour plus 1 jour
+var FirstDay = Math.round(1647043200
+  //timestampTest.getTime() / 1000
+  ); //+ 90000000 pour plus 1 jour
 
 const leagues=[140,78,39];
 
@@ -54,7 +56,6 @@ function getOptions(paramsDate,league) {
 }
 
 async function matchAdder() {
-  var idSub=0;
   var matches = [];
   var matches2=[]
   for (let a = 0; a < leagues.length; a++) {
@@ -72,7 +73,7 @@ async function matchAdder() {
           let idAway = JSON.parse(response.body).response[u].teams.away.name;
           let status = JSON.parse(response.body).response[u].fixture.status.long;
           let timestamp = JSON.parse(response.body).response[u].fixture.timestamp;
-          
+          let idSub = JSON.parse(response.body).response[u].fixture.id
           timestamps.push(timestamp);
           
           let goalsHome = JSON.parse(response.body).response[u].goals.home;
@@ -146,8 +147,34 @@ async function matchAdder() {
   return matches;
 }
 
-matchAdder();
+async function getEvents(idMatch){
+  var events;
+  let options={
+    'method': 'GET',
+    'url': 'https://v3.football.api-sports.io/fixtures/events',
+    qs: {
+      'fixture':idMatch
+    },
+    'headers': {
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+      'x-rapidapi-key': '0bed05814d17f569c5688a84a318f638'
+    }
+  }
+  await new Promise(next => {
+  request(options, async function (error, response) {
+    if (error) throw new Error(error);
+    events=JSON.parse(response.body)
+    next();
+  })
+
+})
+return events
+
+}
+
+//matchAdder();
 var _default = {
-  matchAdder
+  matchAdder,
+  getEvents
 };
 exports.default = _default;
