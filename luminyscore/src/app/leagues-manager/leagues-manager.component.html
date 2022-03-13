@@ -1,11 +1,14 @@
 <div class="centerdiv container">
   <h2 class="centerdiv">MATCHS DU JOUR </h2>
         <!-- <p>Mise à jour le {{ lastUpdate | date: "short" | lowercase }}</p> -->
+        <button (click)="dayUp()">Day Up</button>
+        <button (click)="dayDown()">Day Down</button>
         <section class="flexrow">
           
           <app-score-view *ngFor="let score of scores; let i = index" [index]=i [id]="i" [scoresLeagues]="score" ></app-score-view>
   
         </section>
+        
         <!-- <button class="btn btn-success" [disabled]="!isAuth" (click)="allPresent()">Tous Présents</button>
         <button class="btn btn-danger" [disabled]="!isAuth" (click)="allAbsent()">Tous Absent</button> -->
   </div>

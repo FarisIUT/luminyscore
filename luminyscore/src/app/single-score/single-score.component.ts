@@ -24,15 +24,24 @@ export class SingleScoreComponent implements OnInit {
   score2: any;
   id: number;
   status: string;
+  timestamp: number;
   async ngOnInit(): Promise<void> {
-    this.ScoreSubscription = this.http.getDataMatch().subscribe(
-      (scores: any[]) => {
+    this.id = this.route.snapshot.params['id'];
+    this.ScoreSubscription = this.http.getDataMatchbyId(this.route.snapshot.params['id']).subscribe(
+      (scores: any) => {
         this.scores = scores;
+        console.log(scores)
+        this.equipe1 = Object.values(this.scores.equipe)[0];
+        this.equipe2 = Object.values(this.scores.equipe)[1];
+
+        this.score1 = Object.values(this.scores.score)[0];
+        this.score2 = Object.values(this.scores.score)[1];
         //console.log("from singlescore")
 
 
-        this.id = this.route.snapshot.params['id'];
+        
         //console.log("id "+this.id)
+        /*
         ent:
         for (let a = 0; a < this.scores.length; a++) {
           for (let u = 0; u < this.scores[a].length; u++) {
@@ -49,7 +58,7 @@ export class SingleScoreComponent implements OnInit {
               break ent;
             }
           }
-        }
+        }*/
 
         //console.log("/from singlescore")
       }
@@ -65,8 +74,8 @@ export class SingleScoreComponent implements OnInit {
       }
     )
     //await delay(1000);
-    console.log("events " + this.events)
-    console.log("scores " + this.scores)
+    //console.log("events " + this.events)
+    //console.log("scores " + this.scores)
   }
 
   ngOnDestroy() {

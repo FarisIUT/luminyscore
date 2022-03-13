@@ -18,8 +18,8 @@ var FirstDay = Math.round(1647043200
 
 const leagues=[140,78,39];
 
-function dateIterator() {
-  let timestamp = FirstDay; // jour de dÃ©part iteration dates
+function dateIterator(timestamp) {
+  //let timestamp = FirstDay; // jour de dÃ©part iteration dates
 
   let date = new Date(timestamp * 1000).toLocaleDateString("en-US");
   let year = new Date(timestamp * 1000).getFullYear();
@@ -55,13 +55,13 @@ function getOptions(paramsDate,league) {
   };
 }
 
-async function matchAdder() {
+async function matchAdder(timestamp) {
   var matches = [];
   var matches2=[]
   for (let a = 0; a < leagues.length; a++) {
     console.log("a "+a)
     matches.push([]);
-    let options = getOptions(dateIterator(), leagues[a]);
+    let options = getOptions(dateIterator(timestamp), leagues[a]);
     var timestamps=[]
     await new Promise(next => {
       
@@ -155,6 +155,10 @@ async function matchAdder() {
   return matches;
 }
 async function matchById(id) {
+<<<<<<< HEAD
+=======
+  var reponse;
+>>>>>>> e6691f46a7a5f258dcaa64cc647894174e918dae
   let options={
     'method': 'GET',
     'url': 'https://v3.football.api-sports.io/fixtures',
@@ -168,7 +172,11 @@ async function matchById(id) {
   }
   
   await new Promise(next => {
+<<<<<<< HEAD
       var reponse;
+=======
+      
+>>>>>>> e6691f46a7a5f258dcaa64cc647894174e918dae
       request(options, async function (error, response) {
         if (error) throw new Error(error);
         

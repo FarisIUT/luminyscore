@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,OnChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HttpService } from '../services/http.service';
 import { ScoreService } from '../services/score.service';
@@ -8,14 +8,15 @@ import { ScoreService } from '../services/score.service';
   templateUrl: './score-view.component.html',
   styleUrls: ['./score-view.component.scss']
 })
-export class ScoreViewComponent implements OnInit {
+export class ScoreViewComponent implements OnInit,OnChanges {
 
   @Input() scoresLeagues: any[];
   @Input() id: number
+  league:string;
   isAuth: boolean = false;
   lastUpdate = new Date();
   //scoreSubscription: Subscription;
-  scores: any;
+  //scores: any;
   constructor(private ScoreService: ScoreService,private http: HttpService) {
     //console.log("from score-view construc"+this.scoresLeagues);
     setTimeout(() => {
@@ -25,7 +26,12 @@ export class ScoreViewComponent implements OnInit {
   }
     ngOnInit() {
     //console.log("from score-view ng on init"+this.scoresLeagues);
-    this.scores = this.ScoreService.getScore();
+    //this.scores = this.ScoreService.getScore();
+    this.league=this.scoresLeagues[0].league;
+    //console.log(this.scoresLeagues[0].league);
+  }
+  ngOnChanges(){
+    this.league=this.scoresLeagues[0].league;
   }
 
 }
