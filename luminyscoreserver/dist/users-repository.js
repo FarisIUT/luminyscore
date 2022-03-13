@@ -35,6 +35,21 @@ const store = user => _esClient.default.index({
   handleElasticsearchError(error);
 });
 
+const edit = (user, id) => _esClient.default.update({
+  index,
+  id: id,
+  body: {
+    doc: {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      mdp: user.mdp
+    }
+  }
+}).then(response => response.status).catch(error => {
+  handleElasticsearchError(error);
+});
+
 const getUser = firstName => _esClient.default.search({
   index,
   body: {
@@ -86,6 +101,7 @@ var _default = {
   store,
   getAll,
   remove,
-  getUserViaEmail
+  getUserViaEmail,
+  edit
 };
 exports.default = _default;

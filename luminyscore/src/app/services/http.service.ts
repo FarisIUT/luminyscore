@@ -15,11 +15,12 @@ export class HttpService {
     }),
   };
 
-
-
   public signIn(user) {
     return this.http.post<User>(
-      this.serverUrl + 'users/signin',user,this.httpOptions);
+      this.serverUrl + 'users/signin',
+      user,
+      this.httpOptions
+    );
   }
 
   public getUsers() {
@@ -34,17 +35,23 @@ export class HttpService {
     );
   }
 
-  public getDataMatch(): Observable<any>{
-    console.log("appel serveur data match")
-    return this.http.get(this.serverUrl+'score') ;
+  public editUser(user): Observable<User> {
+    return this.http.post<User>(
+      this.serverUrl + 'users/edit',
+      user,
+      this.httpOptions
+    );
   }
 
-  public getEventsMatch(id):Observable<any>{
-    console.log("appel serveur events match")
-    return this.http.get(this.serverUrl+'score/events/'+id) ;
+  public getDataMatch(): Observable<any> {
+    console.log('appel serveur data match');
+    return this.http.get(this.serverUrl + 'score');
   }
 
-
+  public getEventsMatch(id): Observable<any> {
+    console.log('appel serveur events match');
+    return this.http.get(this.serverUrl + 'score/events/' + id);
+  }
 
   public suppressUser(firstName) {
     return this.http.delete<any>(this.serverUrl + 'users/' + firstName, {

@@ -33,6 +33,7 @@ const usersRouter = _express.default.Router(); // let users = [{firstName:'Will'
 // });
 
 
+usersRouter.post("/edit", (0, _expressAsyncHandler.default)(_usersHandler.default.editUser));
 usersRouter.post("/signin", (0, _expressAsyncHandler.default)(_usersHandler.default.signIn));
 usersRouter.get("/", (0, _expressAsyncHandler.default)(_usersHandler.default.getUsers));
 usersRouter.post("/", (0, _expressAsyncHandler.default)(_usersHandler.default.create));

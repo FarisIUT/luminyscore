@@ -53,9 +53,10 @@ export class AuthComponent implements OnInit {
           this.authStatus = true;
           this.app.authStatus = true;
           this.authService.isAuth = true;
-          this.app.isAdmin = response.admin;
           localStorage.setItem('user', JSON.stringify(response));
-          this.router.navigate(['users']);
+          let authedUser = JSON.parse(localStorage.getItem('user'));
+          this.app.isAdmin = authedUser.user.admin;
+          this.router.navigate(['scores']);
         } else {
           alert('Identifiant ou mot de passe incorrect');
         }

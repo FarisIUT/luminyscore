@@ -45,6 +45,21 @@ async function create(req, res) {
   }
 }
 
+async function editUser(req, res) {
+  res.set("Content-Type", "application/json");
+
+  try {
+    const user = await _usersRepository.default.getUserViaEmail(req.body.email);
+    await _usersRepository.default.edit(req.body, user.hits.hits[0]._id);
+    res.send({
+      user: req.body
+    });
+  } catch (e) {
+    console.log("error updating user", e);
+    res.status(400).end();
+  }
+}
+
 async function userExist(firstName) {
   try {
     const result = await _usersRepository.default.getUser(firstName);
@@ -124,6 +139,7 @@ var _default = {
   create,
   userExist,
   userDelete,
-  signIn
+  signIn,
+  editUser
 };
 exports.default = _default;

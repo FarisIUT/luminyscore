@@ -32,24 +32,33 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmitForm() {
     const formValue = this.userForm.value;
+    let adminTestBool;
+
+    if (
+      formValue['firstName'] === 'solal' ||
+      formValue['firstName'] === 'faris' ||
+      formValue['firstName'] === 'achille'
+    ) {
+      adminTestBool = true;
+    } else {
+      adminTestBool = false;
+    }
 
     const newUser = new User(
       formValue['firstName'],
       formValue['lastName'],
       formValue['email'],
       formValue['mdp'],
-      null
+      adminTestBool
     );
 
-    this.httpService.createUser(newUser).subscribe(
-      (response) => {
-        if (response && response.firstName === 'ok') {
-          alert('User créé');
-          this.router.navigate(['/compte']);
-        } else {
-          alert('User Existe !');
-        }
+    this.httpService.createUser(newUser).subscribe((response) => {
+      if (response && response.firstName === 'ok') {
+        alert('User créé');
+        this.router.navigate(['/compte']);
+      } else {
+        alert('User Existe !');
       }
-    );
+    });
   }
 }

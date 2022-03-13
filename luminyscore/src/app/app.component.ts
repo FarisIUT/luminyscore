@@ -14,12 +14,10 @@ export class AppComponent implements OnDestroy, OnInit {
   authStatus: boolean = false;
   isAdmin: boolean = true;
 
-  constructor(
-    private auth: AuthService,
-    private rout: Router
-  ) {
+  constructor(private auth: AuthService, private rout: Router) {
     this.authStatus = this.auth.isAuth;
   }
+
   ngOnInit() {
     //const obs = of(1,2,3).pipe(map(v=>v+1));
     const counter = interval(0);
