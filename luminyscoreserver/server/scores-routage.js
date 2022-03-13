@@ -15,13 +15,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const scoresRouter = _express.default.Router();
 
-let scores = getDataScores.matchAdder();
 scoresRouter.get('/', function (req, res) {
-    //console.log("response"+getDataScores.matchAdder());
-    getDataScores.matchAdder().then((result)=>{res.send(result)})
-    //res.send(getDataScores.matchAdder());
+  console.log("appel score-routage")
+  getDataScores.matchAdder().then((result)=>{console.log("from scores-routages "+result)})
+  getDataScores.matchAdder().then((result)=>{res.send(result)})
 });
-scoresRouter.get('/', (0, _expressAsyncHandler.default)(_getDataScores.default.matchAdder()));
-scoresRouter.post('/', (0, _expressAsyncHandler.default)(_getDataScores.default.matchAdder()));
+
 var _default = scoresRouter;
 exports.default = _default;
