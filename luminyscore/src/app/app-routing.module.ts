@@ -13,7 +13,6 @@ import { SingleScoreComponent } from './single-score/single-score.component';
 import { LeaguesManagerComponent } from './leagues-manager/leagues-manager.component';
 
 
-
 const appRoutes: Routes =  [
   {path: '',pathMatch: 'full',redirectTo: 'auth'},
   { path: 'scores',canActivate: [AuthGuard], component: LeaguesManagerComponent  },

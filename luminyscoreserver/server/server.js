@@ -13,7 +13,16 @@ app.use(express.static('./app/luminyscore'))
 app.use('/users', usersRouter);
 app.use('/score', scoresRouter);
 
-app.get('/', function (req, res) {
- res.sendFile('index.html');
+app.get('/scores', function (req, res) {
+ res.sendFile(__dirname + '/app/luminyscore/index.html');
+});
+app.get('/scores/*', function (req, res) {
+    res.sendFile(__dirname + '/app/luminyscore/index.html');
+});
+app.get('/compte', function (req, res) {
+    res.sendFile(__dirname + '/app/luminyscore/index.html');
+});
+app.get('/auth', function (req, res) {
+    res.sendFile(__dirname + '/app/luminyscore/index.html');
 });
 app.listen(8080);

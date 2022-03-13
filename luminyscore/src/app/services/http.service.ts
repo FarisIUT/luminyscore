@@ -42,12 +42,14 @@ export class HttpService {
       this.httpOptions
     );
   }
-
-  public getDataMatch(): Observable<any> {
+  public getDataMatch(timestamp): Observable<any> {
     console.log('appel serveur data match');
-    return this.http.get(this.serverUrl + 'score');
+    return this.http.get(this.serverUrl + 'score/' + timestamp);
   }
-
+  public getDataMatchbyId(id): Observable<any> {
+    console.log('appel serveur data match by id ' + id);
+    return this.http.get(this.serverUrl + 'score/s/' + id);
+  }
   public getEventsMatch(id): Observable<any> {
     console.log('appel serveur events match');
     return this.http.get(this.serverUrl + 'score/events/' + id);
