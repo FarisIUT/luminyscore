@@ -1,5 +1,5 @@
 
-<div class="col-xs-12" >
+<div class="ml-2" >
 <app-score *ngFor="let score of scoresLeagues; let i = index" [index]=i [score1]="score.score[0]" 
         [score2]="score.score[1]" [equipe1]="score.equipe[0]" [equipe2]="score.equipe[1]"
           [status]="score.status" [id]="score.id" [date]="score.date" [idSub]="score.idS"></app-score>
