@@ -26,6 +26,13 @@ export class ScoreComponent implements OnInit,OnChanges {
   }
 
   ngOnInit(): void {
+    this.status = (this.status == 'Match Finished') ? "Match terminé"  : this.status;
+    this.status = (this.status == 'Not Started') ? 'Débute à : ' + this.date : this.status;
+    this.status = (this.status == 'First Half') ? '1er Période' : this.status;
+    this.status = (this.status == 'Second Half') ? '2ème Période' : this.status;
+
+
+
   }
   ngOnChanges(){
     

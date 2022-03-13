@@ -14,7 +14,8 @@ export class LeaguesManagerComponent implements OnInit {
   scores: any[];
   @Input() id: number
   isAuth: boolean = false;
-  lastUpdate = new Date();
+  @Input() matchdate;
+  @Input() showmatchday;
   scoreSubscription: Subscription;
 
   constructor(private scoreService: ScoreService,private http: HttpService) {
@@ -25,6 +26,9 @@ export class LeaguesManagerComponent implements OnInit {
 
   ngOnInit() {
     this.timestamp=1647189649;
+
+    this.matchdate = new Date(Date.now());
+    this.showmatchday = this.matchdate.toLocaleDateString("en-GB");
     this.scoreSubscription = this.http.getDataMatch(this.timestamp).subscribe(
       (scores: any[]) => {
         this.scores = scores;
@@ -41,6 +45,8 @@ export class LeaguesManagerComponent implements OnInit {
   
   dayUp(){
     this.timestamp+=86400;
+    this.matchdate = this.addDaysToDate(this.matchdate,1);
+    this.showmatchday = this.matchdate.toLocaleDateString("en-GB");
     this.scoreSubscription = this.http.getDataMatch(this.timestamp).subscribe(
       (scores: any[]) => {
         this.scores = scores;
@@ -49,10 +55,22 @@ export class LeaguesManagerComponent implements OnInit {
 
   dayDown(){
     this.timestamp-=86400;
+    this.matchdate = this.lessDaysToDate(this.matchdate,1);
+    this.showmatchday = this.matchdate.toLocaleDateString("en-GB");
     this.scoreSubscription = this.http.getDataMatch(this.timestamp).subscribe(
       (scores: any[]) => {
         this.scores = scores;
     });
   }
 
+  addDaysToDate(date, days){
+    var res = new Date(date);
+    res.setDate(res.getDate() + days);
+    return res;
+  }
+  lessDaysToDate(date, days){
+    var res = new Date(date);
+    res.setDate(res.getDate() - days);
+    return res;
+  }
 }

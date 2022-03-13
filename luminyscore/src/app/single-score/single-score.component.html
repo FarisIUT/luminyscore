@@ -8,7 +8,7 @@
 <div class="centerdiv">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title centerdiv"><strong>{{ equipe1 }} </strong> {{score1}} - {{score2}} <strong> {{ equipe2 }}</strong></h5>
+      <h3 class="card-title"><strong>{{ equipe1 }} </strong> {{score1}} - {{score2}} <strong> {{ equipe2 }}</strong></h3>
       <app-events-match *ngFor="let event of events;" [event]="event"></app-events-match>
       <a routerLink="/scores">Retour à la liste</a>
     </div>

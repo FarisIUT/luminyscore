@@ -16,6 +16,9 @@ app.use('/score', scoresRouter);
 app.get('/scores', function (req, res) {
  res.sendFile(__dirname + '/app/luminyscore/index.html');
 });
+app.get('/scores/*', function (req, res) {
+    res.sendFile(__dirname + '/app/luminyscore/index.html');
+});
 app.get('/compte', function (req, res) {
     res.sendFile(__dirname + '/app/luminyscore/index.html');
 });

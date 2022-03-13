@@ -151,10 +151,7 @@ async function matchAdder(timestamp) {
 }
 
 async function matchById(id) {
-<<<<<<< HEAD
-=======
   var reponse;
->>>>>>> e6691f46a7a5f258dcaa64cc647894174e918dae
   let options = {
     'method': 'GET',
     'url': 'https://v3.football.api-sports.io/fixtures',
@@ -167,10 +164,6 @@ async function matchById(id) {
     }
   };
   await new Promise(next => {
-<<<<<<< HEAD
-    var reponse;
-=======
->>>>>>> e6691f46a7a5f258dcaa64cc647894174e918dae
     request(options, async function (error, response) {
       if (error) throw new Error(error);
 
