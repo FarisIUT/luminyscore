@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
 import { AppComponent } from '../app.component';
 import { HttpService } from '../services/http.service';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -15,11 +15,11 @@ export class AuthComponent implements OnInit {
   authForm: FormGroup;
 
   constructor(
-    private authService: AuthService,
     private router: Router,
     private app: AppComponent,
     private httpService: HttpService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {}
 
   authStatus: boolean = false;
@@ -36,7 +36,6 @@ export class AuthComponent implements OnInit {
   }
 
   onSignIn() {
-
     const formValue = this.authForm.value;
 
     const user = new User(
@@ -51,7 +50,11 @@ export class AuthComponent implements OnInit {
       (response) => {
         if (response && response.mdp === 'ok') {
           alert('Connection effectuée');
-          this.router.navigate(['/compte']);
+          this.authStatus = true;
+          this.app.authStatus = true;
+          this.authService.isAuth = true;
+          this.app.isAdmin = true;
+          this.router.navigate(['compte']);
         } else {
           alert('Identifiant ou mot de passe incorrect');
         }
@@ -61,20 +64,21 @@ export class AuthComponent implements OnInit {
       }
     );
   }
-  tcheat(){
+
+  tcheat() {
     this.authStatus = true;
     this.app.authStatus = true;
-    this.authService.isAuth = true
-    this.router.navigate(['/compte']);
-
+    this.router.navigate(['compte']);
   }
+
   onCreateAccount() {
     this.router.navigate(['createaccount']);
   }
 
   onSignOut() {
-    this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
+    this.authStatus = false;
     this.app.authStatus = false;
+    this.authService.isAuth = true;
+    this.app.isAdmin = false;
   }
 }

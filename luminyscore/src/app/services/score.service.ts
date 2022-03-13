@@ -11,7 +11,7 @@ export class ScoreService {
   private scores = [];
   
   getScore(){
-    return this.HttpService.getDataMatch();
+    return this.HttpService.getDataMatch(0);
   }
 
   getEvents(id){

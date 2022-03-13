@@ -4,7 +4,7 @@ async function getUsers(req, res) {
   try {
     const result = await usersRep.getAll();
     const finalArray = [];
-    for (let obj of result.body.hits.hits) {
+    for (let obj of result.hits.hits) {
       finalArray.push(obj._source);
     }
     res.send(finalArray);
@@ -33,7 +33,7 @@ async function create(req, res) {
 async function userExist(firstName) {
   try {
     const result = await usersRep.getUser(firstName);
-    return result.body.hits.total.value > 0 ? true : false;
+    return result.hits.total.value > 0 ? true : false;
   } catch (e) {
     console.log("error getting user", e);
     return false;
@@ -43,17 +43,22 @@ async function userExist(firstName) {
 async function checkAuth(email, mdp) {
   try {
     const result = await usersRep.getUserViaEmail(email);
-    if (result.body.hits.total.value > 0) {
-      if (result.body.hits.hits.mdp === mdp) {
-        return true;
+
+    if (result.hits.total.value > 0) {
+      if (result.hits.hits[0]._source.email === email) {
+        if (result.hits.hits[0]._source.mdp === mdp) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        false;
+        return false;
       }
     } else {
       return false;
     }
   } catch (e) {
-    console.log("error getting user", e, ' ', email, ' ', mdp);
+    console.log("error getting user", e, " ", email, " ", mdp);
     return false;
   }
 }

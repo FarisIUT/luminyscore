@@ -24,8 +24,9 @@ export class SingleScoreComponent implements OnInit {
   score2: any;
   id: number;
   status: string;
+  timestamp: number;
   async ngOnInit(): Promise<void> {
-    this.ScoreSubscription = this.http.getDataMatch().subscribe(
+    this.ScoreSubscription = this.http.getDataMatchbyId(this.id).subscribe(
       (scores: any[]) => {
         this.scores = scores;
         //console.log("from singlescore")

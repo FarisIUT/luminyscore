@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class LeaguesManagerComponent implements OnInit {
 
+  timestamp:number;
   scores: any[];
   @Input() id: number
   isAuth: boolean = false;
@@ -23,7 +24,8 @@ export class LeaguesManagerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.scoreSubscription = this.http.getDataMatch().subscribe(
+    this.timestamp=1647189649;
+    this.scoreSubscription = this.http.getDataMatch(this.timestamp).subscribe(
       (scores: any[]) => {
         this.scores = scores;
 
@@ -35,6 +37,22 @@ export class LeaguesManagerComponent implements OnInit {
 
   ngOnDestroy() {
     this.scoreSubscription.unsubscribe();
+  }
+  
+  dayUp(){
+    this.timestamp+=86400;
+    this.scoreSubscription = this.http.getDataMatch(this.timestamp).subscribe(
+      (scores: any[]) => {
+        this.scores = scores;
+    });
+  }
+
+  dayDown(){
+    this.timestamp-=86400;
+    this.scoreSubscription = this.http.getDataMatch(this.timestamp).subscribe(
+      (scores: any[]) => {
+        this.scores = scores;
+    });
   }
 
 }

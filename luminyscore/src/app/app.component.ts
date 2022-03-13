@@ -13,6 +13,7 @@ export class AppComponent implements OnDestroy, OnInit {
   counterSubscription: Subscription;
   authStatus: boolean = false;
   isAdmin: boolean = true;
+
   constructor(
     private auth: AuthService,
     private rout: Router
