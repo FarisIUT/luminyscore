@@ -3,14 +3,14 @@
   <div class="container-fluid ">
 
     <ul class="navbar-nav">
-      <a class="navbar-brand" routerLink="score">
+      <a class="navbar-brand" routerLink="scores">
 
         <img src="/assets/img/favicon.ico" alt="" width="30" height="24" class="d-inline-block align-text-top icon">
         Luminy score
       </a>
-        <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="score">Résultat</a></li>
+        <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="scores">Résultat</a></li>
         <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="compte">Mon Compte</a></li>
-        <!-- <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="students">etudiant</a></li> -->
+
 
         <!-- <li class="nav-item"><a class="nav-link" routerLink="edit">Nouvel étudiant</a></li> -->
         <li class="nav-item"><a class="nav-link" *ngIf="isAdmin" routerLink="users">Utilisateurs</a></li>
