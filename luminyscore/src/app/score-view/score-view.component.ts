@@ -14,17 +14,17 @@ export class ScoreViewComponent implements OnInit {
   @Input() id: number
   isAuth: boolean = false;
   lastUpdate = new Date();
-  scoreSubscription: Subscription;
+  //scoreSubscription: Subscription;
   scores: any;
   constructor(private ScoreService: ScoreService,private http: HttpService) {
-    console.log("from score-view construc"+this.scoresLeagues);
+    //console.log("from score-view construc"+this.scoresLeagues);
     setTimeout(() => {
       this.isAuth = true;
     }, 4000);
 
   }
     ngOnInit() {
-    console.log("from score-view ng on init"+this.scoresLeagues);
+    //console.log("from score-view ng on init"+this.scoresLeagues);
     this.scores = this.ScoreService.getScore();
   }
 

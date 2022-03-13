@@ -8,10 +8,9 @@
 <div class="centerdiv">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title centerdiv">{{ equipe1 }} - {{ equipe2 }}</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <h5 class="card-title centerdiv"><strong>{{ equipe1 }}</strong> {{score1}} - {{score2}} <strong>{{ equipe2 }}</strong></h5>
+      <app-events-match *ngFor="let event of events;" [type]="event.type"></app-events-match>
       <a routerLink="/scores">Retour à la liste</a>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div>
 </div>

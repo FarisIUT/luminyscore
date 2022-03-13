@@ -12,43 +12,70 @@ import { HttpService } from '../services/http.service';
 })
 export class SingleScoreComponent implements OnInit {
   ScoreSubscription: Subscription;
-  constructor(private route: ActivatedRoute, private ScoreService: ScoreService,private http: HttpService) {
+  constructor(private route: ActivatedRoute, private ScoreService: ScoreService, private http: HttpService) {
 
 
   }
-  @Input() scores: any;
-  @Input() equipe1: any;
-  @Input() equipe2: any;
-  
-
+  scores: any;
+  events: any[];
+  equipe1: any;
+  equipe2: any;
+  score1: any;
+  score2: any;
+  id: number;
   status: string;
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.ScoreSubscription = this.http.getDataMatch().subscribe(
       (scores: any[]) => {
         this.scores = scores;
-        console.log("from singlescore")
-        console.log(this.scores.length)
-        
-        for(let q=0;q<3;q++){
-          console.log(this.scores[q].length);
-          console.log(this.scores[q]);
-        }
-        const id = this.route.snapshot.params['id'];
-        console.log("id "+id)
-        for(let a=0;a<this.scores.length;a++){
-          for(let u=0;u<this.scores[a].length;u++){
+        //console.log("from singlescore")
+
+
+        this.id = this.route.snapshot.params['id'];
+        //console.log("id "+this.id)
+        ent:
+        for (let a = 0; a < this.scores.length; a++) {
+          for (let u = 0; u < this.scores[a].length; u++) {
             //console.log(this.scores[a][u])
-            if(this.scores[a][u].idS==id){
-              console.log(this.scores[a][u])
-              console.log(Object.values(this.scores[a][u].equipe))
-              this.equipe1=Object.values(this.scores[a][u].equipe)[0];
-              this.equipe2=Object.values(this.scores[a][u].equipe)[1];
+            if (this.scores[a][u].idS == this.id) {
+              //console.log(this.scores[a][u])
+              //console.log(Object.values(this.scores[a][u].equipe))
+              this.scores = this.scores[a][u];
+              this.equipe1 = Object.values(this.scores.equipe)[0];
+              this.equipe2 = Object.values(this.scores.equipe)[1];
+
+              this.score1 = Object.values(this.scores.score)[0];
+              this.score2 = Object.values(this.scores.score)[1];
+              break ent;
             }
           }
         }
-        console.log("team1 "+this.equipe1);
 
-    });
-    
+        //console.log("/from singlescore")
+      }
+    );
+
+
+    this.ScoreSubscription = this.http.getEventsMatch(this.route.snapshot.params['id']).subscribe(
+      (events: any) => {
+        //console.log("id params"+this.route.snapshot.params['id'])
+
+        this.events = events.response;
+
+      }
+    )
+    //await delay(1000);
+    console.log("events " + this.events)
+    console.log("scores " + this.scores)
   }
+
+  ngOnDestroy() {
+    this.ScoreSubscription.unsubscribe();
+  }
+
+}
+
+
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

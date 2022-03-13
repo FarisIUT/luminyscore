@@ -16,6 +16,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { UserService } from './services/user.service';
 import { TchatComponent } from './tchat/tchat.component';
 import { LeaguesManagerComponent } from './leagues-manager/leagues-manager.component';
+import { EventsMatchComponent } from './events-match/events-match.component';
 
 
 
@@ -33,6 +34,7 @@ import { LeaguesManagerComponent } from './leagues-manager/leagues-manager.compo
     CreateAccountComponent,
     TchatComponent,
     LeaguesManagerComponent,
+    EventsMatchComponent,
 
   ],
   imports: [

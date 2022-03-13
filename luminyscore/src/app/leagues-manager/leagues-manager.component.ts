@@ -26,12 +26,9 @@ export class LeaguesManagerComponent implements OnInit {
     this.scoreSubscription = this.http.getDataMatch().subscribe(
       (scores: any[]) => {
         this.scores = scores;
-        console.log("from leagues managers "+ scores.length)
-        console.log("from leagues managers "+ scores)
 
-        for(let score of scores){
-          console.log("lm "+score);
-        }
+
+        
     });
     //this.scores = this.scoreService.getScore();
   }

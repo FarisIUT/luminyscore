@@ -39,6 +39,11 @@ export class HttpService {
     return this.http.get(this.serverUrl+'score') ;
   }
 
+  public getEventsMatch(id):Observable<any>{
+    console.log("appel serveur events match")
+    return this.http.get(this.serverUrl+'score/events/'+id) ;
+  }
+
 
 
   public suppressUser(firstName) {

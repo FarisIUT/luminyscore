@@ -13,4 +13,8 @@ export class ScoreService {
   getScore(){
     return this.HttpService.getDataMatch();
   }
+
+  getEvents(id){
+    return this.HttpService.getEventsMatch(id);
+  }
 }
