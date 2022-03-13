@@ -65,8 +65,8 @@ export class SingleScoreComponent implements OnInit {
       }
     )
     //await delay(1000);
-    console.log("events " + this.events)
-    console.log("scores " + this.scores)
+    //console.log("events " + this.events)
+    //console.log("scores " + this.scores)
   }
 
   ngOnDestroy() {
