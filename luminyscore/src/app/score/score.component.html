@@ -1,6 +1,6 @@
 
   <div class="card match">
-    <h5 class="card-header centerdiv">{{date}}</h5>
+    <h5 class="card-header centerdiv">{{date}} <button (click)="Onlike()" class="btn"><i [ngClass]="heart"></i></button></h5>
     <div class="card-body card-body-faris">
       <h5 class="centerdiv">{{ score1 }} - {{ score2 }}</h5>
       <div class="equipes">
@@ -8,6 +8,7 @@
       </div>
       <p class="card-text centerdiv">{{status}}</p>
       <a [routerLink]="[idSub]" class="btn btn-primary">Plus d'infos</a>
+      
     </div>
   </div>
 
