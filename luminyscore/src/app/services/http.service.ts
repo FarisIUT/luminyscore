@@ -42,22 +42,30 @@ export class HttpService {
       this.httpOptions
     );
   }
-  public getDataMatch(timestamp): Observable<any> {
-    console.log('appel serveur data match');
-    return this.http.get(this.serverUrl + 'score/' + timestamp);
-  }
-  public getDataMatchbyId(id): Observable<any> {
-    console.log('appel serveur data match by id ' + id);
-    return this.http.get(this.serverUrl + 'score/s/' + id);
-  }
-  public getEventsMatch(id): Observable<any> {
-    console.log('appel serveur events match');
-    return this.http.get(this.serverUrl + 'score/events/' + id);
-  }
 
   public suppressUser(firstName) {
     return this.http.delete<any>(this.serverUrl + 'users/' + firstName, {
       observe: 'response',
     });
+  }
+
+  public getDataMatch(timestamp): Observable<any> {
+    return this.http.get(this.serverUrl + 'score/' + timestamp);
+  }
+
+  public getDataMatchbyId(id): Observable<any> {
+    return this.http.get(this.serverUrl + 'score/s/' + id);
+  }
+
+  public getEventsMatch(id): Observable<any> {
+    return this.http.get(this.serverUrl + 'score/events/' + id);
+  }
+
+  public likeMatch(id): Observable<any> {
+    return this.http.post<any>(this.serverUrl + 'likes', id, this.httpOptions);
+  }
+
+  public getLikes(id) {
+    return this.http.get(this.serverUrl + 'likes', this.httpOptions);
   }
 }
