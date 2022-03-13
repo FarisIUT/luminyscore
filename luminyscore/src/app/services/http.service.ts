@@ -39,7 +39,7 @@ export class HttpService {
     return this.http.get(this.serverUrl+'score/'+timestamp) ;
   }
   public getDataMatchbyId(id): Observable<any>{
-    console.log("appel serveur data match")
+    console.log("appel serveur data match by id "+id )
     return this.http.get(this.serverUrl+'score/s/'+id) ;
   }
   public getEventsMatch(id):Observable<any>{
