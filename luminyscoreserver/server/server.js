@@ -19,4 +19,7 @@ app.get('/scores', function (req, res) {
 app.get('/compte', function (req, res) {
     res.sendFile(__dirname + '/app/luminyscore/index.html');
 });
+app.get('/auth', function (req, res) {
+    res.sendFile(__dirname + '/app/luminyscore/index.html');
+});
 app.listen(8080);

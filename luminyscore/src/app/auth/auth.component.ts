@@ -48,13 +48,14 @@ export class AuthComponent implements OnInit {
 
     this.httpService.signIn(user).subscribe(
       (response) => {
-        if (response && response.mdp === 'ok') {
+        if (response && !this.isEmpty(response)) {
           alert('Connection effectuée');
           this.authStatus = true;
           this.app.authStatus = true;
           this.authService.isAuth = true;
-          this.app.isAdmin = true;
-          this.router.navigate(['compte']);
+          this.app.isAdmin = response.admin;
+          localStorage.setItem('user', JSON.stringify(response));
+          this.router.navigate(['users']);
         } else {
           alert('Identifiant ou mot de passe incorrect');
         }
@@ -63,6 +64,18 @@ export class AuthComponent implements OnInit {
         console.log('erreur', e);
       }
     );
+  }
+
+  isEmpty(response) {
+    if (
+      response &&
+      Object.keys(response).length === 0 &&
+      Object.getPrototypeOf(response) === Object.prototype
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   tcheat() {
