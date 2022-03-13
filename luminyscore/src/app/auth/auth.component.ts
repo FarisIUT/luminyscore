@@ -54,7 +54,7 @@ export class AuthComponent implements OnInit {
           this.app.authStatus = true;
           this.authService.isAuth = true;
           this.app.isAdmin = true;
-          this.router.navigate(['score']);
+          this.router.navigate(['compte']);
         } else {
           alert('Identifiant ou mot de passe incorrect');
         }
