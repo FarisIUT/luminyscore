@@ -6,6 +6,7 @@
     </button>
   </h5>
   <div class="card-body card-body-faris">
+    <h3 style="color: red">{{ live }}</h3>
     <h5 class="centerdiv">{{ score1 }} - {{ score2 }}</h5>
     <div class="equipes">
       <h5 class="card-title">{{ equipe1 }} vs {{ equipe2 }}</h5>
@@ -13,4 +14,6 @@
     <p class="card-text centerdiv">{{ status }}</p>
     <a [routerLink]="[idSub]" class="btn btn-primary">Plus d'infos</a>
   </div>
+  <p class="card-text centerdiv">{{ status }}</p>
+  <a [routerLink]="[idSub]" class="btn btn-primary">Plus d'infos</a>
 </div>

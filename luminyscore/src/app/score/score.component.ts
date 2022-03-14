@@ -28,7 +28,8 @@ export class ScoreComponent implements OnInit {
   @Input() date: string;
   @Input() status: string;
   @Input() idSub: number;
-  @Input() heart: string;
+  @Input() heart: string = 'fa-solid fa-heart';
+  @Input() live: string;
 
   scoreSubscription: Subscription;
   constructor(
@@ -49,6 +50,15 @@ export class ScoreComponent implements OnInit {
       localStorage.getItem(this.idS.toString()) === 'red'
         ? 'fa-solid fa-heart red'
         : 'fa-solid fa-heart';
+
+    this.status = this.status == 'Halftime' ? 'Mi-temps' : this.status;
+    if (
+      this.status == 'First Half' ||
+      this.status == 'Second Half' ||
+      this.status == 'Halftime'
+    ) {
+      this.live = '🔴 LIVE';
+    }
   }
 
   getLikes() {

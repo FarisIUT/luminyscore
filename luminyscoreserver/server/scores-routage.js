@@ -19,6 +19,7 @@ function _interopRequireDefault(obj) {
 
 const scoresRouter = _express.default.Router();
 
+<<<<<<< HEAD
 scoresRouter.get("/:timestamp", function (req, res) {
   getDataScores.matchAdder(req.params.timestamp).then((result) => {});
   getDataScores.matchAdder(req.params.timestamp).then((result) => {
@@ -35,6 +36,17 @@ scoresRouter.get("/events/:id", function (req, res) {
   getDataScores.getEvents(req.params.id).then((result) => {
     res.send(result);
   });
+=======
+scoresRouter.get('/:timestamp', function (req, res) {
+  //console.log("appel score-routage")
+  //getDataScores.matchAdder(req.params.timestamp).then((result)=>{console.log("from scores-routages "+result)})
+  getDataScores.matchAdder(req.params.timestamp).then((result)=>{res.send(result)})
+});
+scoresRouter.get('/s/:id', function (req, res) {
+  //console.log("appel score-routage")
+  //getDataScores.matchById(req.params.id).then((result)=>{console.log("from scores-routages "+result)})
+  getDataScores.matchById(req.params.id).then((result)=>{res.send(result)})
+>>>>>>> 26791c07c5a842f423b7b5e76d368dd9d4fa6647
 });
 var _default = scoresRouter;
 exports.default = _default;
