@@ -9,7 +9,6 @@ export class TeamComponent implements OnInit {
 
   @Input() events: any[];
   @Input() team:string;
-  @Input() score:any;
   @Input() linkImage:string;
   @Input() home:boolean;
   text:string;
@@ -20,26 +19,25 @@ export class TeamComponent implements OnInit {
 
     delay(1000).then(()=>{
 
-      if(this.score==null){this.score=""}
       if(this.home==true){
-        this.text=this.team+"      "+this.score;
+        this.text=this.team;
 
       }
       if(this.home==false){
-        this.text=this.score+"      "+this.team;
+        this.text=this.team;
 
       }
     })
-    
+
   }
   ngOnChange(): void {
 
     if(this.home==true){
-      this.text=this.team+" "+this.score;
+      this.text=this.team;
 
     }
     if(this.home==false){
-      this.text=this.score+" "+this.team;
+      this.text=this.team;
 
     }
   }
