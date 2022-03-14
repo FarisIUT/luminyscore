@@ -11,15 +11,9 @@ const {
 
 const request = require("request");
 
-let timestampTest = new Date();
-var FirstDay = Math.round(1647043200 //timestampTest.getTime() / 1000
-); //+ 90000000 pour plus 1 jour
-
-const leagues = [140, 78, 39];
+const leagues = [140, 342, 203];
 
 function dateIterator(timestamp) {
-  //let timestamp = FirstDay; // jour de dÃ©part iteration dates
-  let date = new Date(timestamp * 1000).toLocaleDateString("en-US");
   let year = new Date(timestamp * 1000).getFullYear();
   let month = new Date(timestamp * 1000).getMonth();
   month++;
@@ -58,7 +52,6 @@ async function matchAdder(timestamp) {
   var matches2 = [];
 
   for (let a = 0; a < leagues.length; a++) {
-    console.log("a " + a);
     matches.push([]);
     let options = getOptions(dateIterator(timestamp), leagues[a]);
     var timestamps = [];
@@ -125,8 +118,7 @@ async function matchAdder(timestamp) {
           });
           matches2.push(idHome + "-" + idAway);
           idSub++;
-        } //console.log(JSON.parse(response.body));
-
+        }
 
         let Matches = [];
         timestamps.sort();

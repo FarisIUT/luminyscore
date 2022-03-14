@@ -1,0 +1,5 @@
+<div class="centerdiv">
+  <h3>{{team}} </h3>
+  <img [src]="linkImage">
+  <app-events-match *ngFor="let event of events;" [event]="event"></app-events-match>
+</div>

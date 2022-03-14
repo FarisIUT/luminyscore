@@ -14,13 +14,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class SingleScoreComponent implements OnInit {
   ScoreSubscription: Subscription;
-  stadium: any;
-  constructor(private route: ActivatedRoute, private ScoreService: ScoreService, private http: HttpService,private sanitizer: DomSanitizer) {
-
-
+  constructor(private route: ActivatedRoute, private ScoreService: ScoreService, private http: HttpService) {
   }
   scores: any;
   events: any[];
+  events1:any[]=[];
+  events2:any[]=[];
   equipe1: any;
   equipe2: any;
   score1: any;
@@ -31,73 +30,57 @@ export class SingleScoreComponent implements OnInit {
 
   status: string;
   timestamp: number;
-  transform(url) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
+  True:boolean=true;
+  False:boolean=false;
+  linkImgHome: string;
+  linkImgAway: string;
+  date:string;
+  stade:string;
   async ngOnInit(): Promise<void> {
     this.id = this.route.snapshot.params['id'];
-    this.ScoreSubscription = this.http.getDataMatchbyId(this.route.snapshot.params['id']).subscribe(
+    await new Promise<void>(next=>{this.ScoreSubscription = this.http.getDataMatchbyId(this.route.snapshot.params['id']).subscribe(
       (scores: any) => {
         this.scores = scores;
-        console.log(scores)
         this.equipe1 = Object.values(this.scores.equipe)[0];
         this.equipe2 = Object.values(this.scores.equipe)[1];
-    
         this.score1 = Object.values(this.scores.score)[0];
         this.score2 = Object.values(this.scores.score)[1];
-        this.linkAway = this.scores.linkAway;
-        this.linkHome = this.scores.linkHome;
-    
-        this.stadium = '/assets/img/' + this.scores.stadium + '.jpg';
-        //console.log("from singlescore")
-
-
-        
-        //console.log("id "+this.id)
-        /*
-        ent:
-        for (let a = 0; a < this.scores.length; a++) {
-          for (let u = 0; u < this.scores[a].length; u++) {
-            //console.log(this.scores[a][u])
-            if (this.scores[a][u].idS == this.id) {
-              //console.log(this.scores[a][u])
-              //console.log(Object.values(this.scores[a][u].equipe))
-              this.scores = this.scores[a][u];
-              this.equipe1 = Object.values(this.scores.equipe)[0];
-              this.equipe2 = Object.values(this.scores.equipe)[1];
-
-              this.score1 = Object.values(this.scores.score)[0];
-              this.score2 = Object.values(this.scores.score)[1];
-              break ent;
-            }
-          }
-        }*/
-
-        //console.log("/from singlescore")
+        this.stade=scores.stadium;
+        this.status=scores.status;
+        this.date=scores.date;
+        this.linkImgHome=scores.linkHome;
+        this.linkImgAway=scores.linkAway;
+        next();
       }
     );
+    //console.log("next S");
+    })
 
+  await new Promise<void>(next=>{
     this.ScoreSubscription = this.http.getEventsMatch(this.route.snapshot.params['id']).subscribe(
       (events: any) => {
-        //console.log("id params"+this.route.snapshot.params['id'])
-
         this.events = events.response;
-
+        for(let event of this.events){
+          if(event.team.name==this.equipe1){
+            this.events1.push(event);
+          }
+          if(event.team.name==this.equipe2){
+            this.events2.push(event);
+          }
+        }
+        next();
       }
-    )
-    //await delay(1000);
-    //console.log("events " + this.events)
-    //console.log("scores " + this.scores)
+    );//console.log("next E");
+  })
+  //console.log(this.events);
+  //console.log(this.equipe1)
+  //console.log(this.events1);
+  //console.log(this.events2);
   }
-
   ngOnDestroy() {
     this.ScoreSubscription.unsubscribe();
   }
-
 }
-
-
 function delay(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise( resolve => setTimeout(resolve, ms) );
 }
-

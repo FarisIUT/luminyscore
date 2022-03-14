@@ -17,6 +17,8 @@ import { UserService } from './services/user.service';
 import { TchatComponent } from './tchat/tchat.component';
 import { LeaguesManagerComponent } from './leagues-manager/leagues-manager.component';
 import { EventsMatchComponent } from './events-match/events-match.component';
+import { TeamComponent } from './team/team.component';
+import { MiddlematchComponent } from './middlematch/middlematch.component';
 
 
 
@@ -35,6 +37,8 @@ import { EventsMatchComponent } from './events-match/events-match.component';
     TchatComponent,
     LeaguesManagerComponent,
     EventsMatchComponent,
+    TeamComponent,
+    MiddlematchComponent,
 
   ],
   imports: [
