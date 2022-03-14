@@ -39,6 +39,13 @@ export class ScoreComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (
+      this.status == 'First Half' ||
+      this.status == 'Second Half' ||
+      this.status == 'Halftime'
+    ) {
+      this.live = '🔴 LIVE';
+    }
     this.status =
       this.status == 'Match Finished' ? 'Match terminé' : this.status;
     this.status =
@@ -52,13 +59,6 @@ export class ScoreComponent implements OnInit {
         : 'fa-solid fa-heart';
 
     this.status = this.status == 'Halftime' ? 'Mi-temps' : this.status;
-    if (
-      this.status == 'First Half' ||
-      this.status == 'Second Half' ||
-      this.status == 'Halftime'
-    ) {
-      this.live = '🔴 LIVE';
-    }
   }
 
   getLikes() {
