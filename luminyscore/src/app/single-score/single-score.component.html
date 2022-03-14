@@ -1,12 +1,28 @@
 <div class="centerdiv">
   <div class="card">
     <div class="card-body centerrowdiv">
-
-      <app-team id="teamHome" [events]="events1" [team]="equipe1" [home]="True" [linkImage]="linkImgHome" ></app-team>
-      <app-middlematch [stade]="stade" [status]="status" [date]="date"  [score1]="score1" [score2]="score2"></app-middlematch>
-      <app-team id="teamAway" [events]="events2" [team]="equipe2" [home]="False" [linkImage]="linkImgAway"></app-team>
-
+      <app-team
+        id="teamHome"
+        [events]="events1"
+        [team]="equipe1"
+        [home]="True"
+        [linkImage]="linkImgHome"
+      ></app-team>
+      <app-middlematch
+        [stade]="stade"
+        [status]="status"
+        [date]="date"
+        [score1]="score1"
+        [score2]="score2"
+      ></app-middlematch>
+      <app-team
+        id="teamAway"
+        [events]="events2"
+        [team]="equipe2"
+        [home]="False"
+        [linkImage]="linkImgAway"
+      ></app-team>
     </div>
-    <a routerLink="/scores">Retour à la liste</a>
+    <a class="centerdiv" routerLink="/scores">Retour à la liste</a>
   </div>
 </div>

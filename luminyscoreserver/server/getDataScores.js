@@ -9,19 +9,7 @@ const { match } = require("assert");
 
 const request = require("request");
 
-<<<<<<< HEAD
-let timestampTest = new Date();
-var FirstDay = Math.round(
-  1647043200
-  //timestampTest.getTime() / 1000
-); //+ 90000000 pour plus 1 jour
-
-const leagues = [140, 78, 39];
-=======
-
-
-const leagues=[140,342,203];
->>>>>>> 26791c07c5a842f423b7b5e76d368dd9d4fa6647
+const leagues = [140, 342, 203];
 
 function dateIterator(timestamp) {
   let year = new Date(timestamp * 1000).getFullYear();
@@ -130,15 +118,9 @@ async function matchAdder(timestamp) {
           });
           matches2.push(idHome + "-" + idAway);
           idSub++;
-<<<<<<< HEAD
-        } //console.log(JSON.parse(response.body));
+        }
         let Matches = [];
         timestamps.sort();
-=======
-        } 
-        let Matches=[];
-        timestamps.sort()
->>>>>>> 26791c07c5a842f423b7b5e76d368dd9d4fa6647
 
         for (let t = 0; t < matches[a].length; t++) {
           for (let s = 0; s < timestamps.length; s++) {

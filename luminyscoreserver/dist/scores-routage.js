@@ -23,28 +23,16 @@ function _interopRequireDefault(obj) {
 
 const scoresRouter = _express.default.Router();
 
-<<<<<<< HEAD
 scoresRouter.get("/:timestamp", function (req, res) {
   _getDataScores2.default.matchAdder(req.params.timestamp).then(result => {});
 
-=======
-scoresRouter.get('/:timestamp', function (req, res) {
-  //console.log("appel score-routage")
-  //getDataScores.matchAdder(req.params.timestamp).then((result)=>{console.log("from scores-routages "+result)})
->>>>>>> 26791c07c5a842f423b7b5e76d368dd9d4fa6647
   _getDataScores2.default.matchAdder(req.params.timestamp).then(result => {
     res.send(result);
   });
 });
-<<<<<<< HEAD
 scoresRouter.get("/s/:id", function (req, res) {
   _getDataScores2.default.matchById(req.params.id).then(result => {});
 
-=======
-scoresRouter.get('/s/:id', function (req, res) {
-  //console.log("appel score-routage")
-  //getDataScores.matchById(req.params.id).then((result)=>{console.log("from scores-routages "+result)})
->>>>>>> 26791c07c5a842f423b7b5e76d368dd9d4fa6647
   _getDataScores2.default.matchById(req.params.id).then(result => {
     res.send(result);
   });

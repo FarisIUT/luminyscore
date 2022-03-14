@@ -79,12 +79,6 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  tcheat() {
-    this.authStatus = true;
-    this.app.authStatus = true;
-    this.router.navigate(['compte']);
-  }
-
   onCreateAccount() {
     this.router.navigate(['createaccount']);
   }
