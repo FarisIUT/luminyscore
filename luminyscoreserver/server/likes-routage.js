@@ -4,7 +4,8 @@ import likesHandler from "./likes-handler";
 
 const likesRouter = express.Router();
 
-likesRouter.get("/likes", asyncHandler(likesHandler.getLikes));
-likesRouter.post("/likes", asyncHandler(likesHandler.incrLikes));
+likesRouter.get("/:id", asyncHandler(likesHandler.getLikes));
+likesRouter.post("/:id", asyncHandler(likesHandler.incrLikes));
+likesRouter.post("/init/:id", asyncHandler(likesHandler.initLikes));
 
 export default likesRouter;

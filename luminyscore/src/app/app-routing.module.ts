@@ -12,20 +12,26 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { SingleScoreComponent } from './single-score/single-score.component';
 import { LeaguesManagerComponent } from './leagues-manager/leagues-manager.component';
 
+const appRoutes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'auth' },
+  {
+    path: 'scores',
+    canActivate: [AuthGuard],
+    component: LeaguesManagerComponent,
+  },
+  { path: 'compte', canActivate: [AuthGuard], component: MoncompteComponent },
 
-const appRoutes: Routes =  [
-  {path: '',pathMatch: 'full',redirectTo: 'auth'},
-  { path: 'scores',canActivate: [AuthGuard], component: LeaguesManagerComponent  },
-  { path: 'compte',canActivate: [AuthGuard], component: MoncompteComponent },
-
-  { path: 'users', canActivate: [AuthGuard],component: UserListComponent },
-  { path: 'new-user', canActivate: [AuthGuard],component: NewUserComponent },
-
+  { path: 'users', canActivate: [AuthGuard], component: UserListComponent },
+  { path: 'new-user', canActivate: [AuthGuard], component: NewUserComponent },
 
   { path: 'auth', component: AuthComponent },
   { path: 'createaccount', component: CreateAccountComponent },
 
-  { path: 'scores/:id',canActivate: [AuthGuard], component: SingleScoreComponent },
+  {
+    path: 'scores/:id',
+    canActivate: [AuthGuard],
+    component: SingleScoreComponent,
+  },
 
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' },

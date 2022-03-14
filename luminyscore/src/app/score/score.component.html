@@ -1,14 +1,16 @@
-
-  <div class="card match">
-    <h5 class="card-header centerdiv">{{date}} <button (click)="Onlike()" class="btn"><i [ngClass]="heart"></i></button></h5>
-    <div class="card-body card-body-faris">
-      <h5 class="centerdiv">{{ score1 }} - {{ score2 }}</h5>
-      <div class="equipes">
-        <h5 class="card-title">{{ equipe1 }} vs {{ equipe2 }}</h5>
-      </div>
-      <p class="card-text centerdiv">{{status}}</p>
-      <a [routerLink]="[idSub]" class="btn btn-primary">Plus d'infos</a>
-      
+<div class="card match">
+  <h5 class="card-header centerdiv">
+    {{ date }}
+    <button (click)="onLike()" class="btn">
+      <i [ngClass]="heart"></i> {{ likes }}
+    </button>
+  </h5>
+  <div class="card-body card-body-faris">
+    <h5 class="centerdiv">{{ score1 }} - {{ score2 }}</h5>
+    <div class="equipes">
+      <h5 class="card-title">{{ equipe1 }} vs {{ equipe2 }}</h5>
     </div>
+    <p class="card-text centerdiv">{{ status }}</p>
+    <a [routerLink]="[idSub]" class="btn btn-primary">Plus d'infos</a>
   </div>
-
+</div>

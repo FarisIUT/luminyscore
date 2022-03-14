@@ -62,10 +62,20 @@ export class HttpService {
   }
 
   public likeMatch(id): Observable<any> {
-    return this.http.post<any>(this.serverUrl + 'likes', id, this.httpOptions);
+    return this.http.post<any>(
+      this.serverUrl + 'likes/' + id,
+      this.httpOptions
+    );
   }
 
-  public getLikes(id) {
-    return this.http.get(this.serverUrl + 'likes', this.httpOptions);
+  public initLikes(id): Observable<any> {
+    return this.http.post<any>(
+      this.serverUrl + 'likes/init/' + id,
+      this.httpOptions
+    );
+  }
+
+  public getLikes(id): Observable<any> {
+    return this.http.get(this.serverUrl + 'likes/' + id);
   }
 }

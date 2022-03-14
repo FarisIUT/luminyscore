@@ -33,22 +33,21 @@ function dateIterator(timestamp) {
     month = "0" + month;
   }
 
-  ;
   return year + "-" + month + "-" + day;
 }
 
 function getOptions(paramsDate, league) {
   return {
-    'method': 'GET',
-    'url': 'https://v3.football.api-sports.io/fixtures',
+    method: "GET",
+    url: "https://v3.football.api-sports.io/fixtures",
     qs: {
       date: paramsDate,
       league: league,
-      season: '2021'
+      season: "2021"
     },
-    'headers': {
-      'x-rapidapi-host': 'v3.football.api-sports.io',
-      'x-rapidapi-key': '0bed05814d17f569c5688a84a318f638'
+    headers: {
+      "x-rapidapi-host": "v3.football.api-sports.io",
+      "x-rapidapi-key": "0bed05814d17f569c5688a84a318f638"
     }
   };
 }
@@ -58,7 +57,6 @@ async function matchAdder(timestamp) {
   var matches2 = [];
 
   for (let a = 0; a < leagues.length; a++) {
-    console.log("a " + a);
     matches.push([]);
     let options = getOptions(dateIterator(timestamp), leagues[a]);
     var timestamps = [];
@@ -153,14 +151,14 @@ async function matchAdder(timestamp) {
 async function matchById(id) {
   var reponse;
   let options = {
-    'method': 'GET',
-    'url': 'https://v3.football.api-sports.io/fixtures',
+    method: "GET",
+    url: "https://v3.football.api-sports.io/fixtures",
     qs: {
       id: id
     },
-    'headers': {
-      'x-rapidapi-host': 'v3.football.api-sports.io',
-      'x-rapidapi-key': '0bed05814d17f569c5688a84a318f638'
+    headers: {
+      "x-rapidapi-host": "v3.football.api-sports.io",
+      "x-rapidapi-key": "0bed05814d17f569c5688a84a318f638"
     }
   };
   await new Promise(next => {
@@ -234,14 +232,14 @@ async function matchById(id) {
 async function getEvents(idMatch) {
   var events;
   let options = {
-    'method': 'GET',
-    'url': 'https://v3.football.api-sports.io/fixtures/events',
+    method: "GET",
+    url: "https://v3.football.api-sports.io/fixtures/events",
     qs: {
-      'fixture': idMatch
+      fixture: idMatch
     },
-    'headers': {
-      'x-rapidapi-host': 'v3.football.api-sports.io',
-      'x-rapidapi-key': '0bed05814d17f569c5688a84a318f638'
+    headers: {
+      "x-rapidapi-host": "v3.football.api-sports.io",
+      "x-rapidapi-key": "0bed05814d17f569c5688a84a318f638"
     }
   };
   await new Promise(next => {

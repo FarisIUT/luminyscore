@@ -10,16 +10,6 @@ const handleElasticsearchError = (error) => {
   throw new Error(error.msg, error.status || 500);
 };
 
-const getAllLikes = () =>
-  esClient
-    .search({
-      index,
-    })
-    .then((response) => response)
-    .catch((error) => {
-      handleElasticsearchError(error);
-    });
-
 const getLikes = (matchId) =>
   esClient
     .search({
@@ -39,7 +29,7 @@ const getLikes = (matchId) =>
       handleElasticsearchError(error);
     });
 
-const incrLikes = (matchId, id) =>
+const incrLikes = (id, count) =>
   esClient
     .update({
       index,
@@ -52,23 +42,28 @@ const incrLikes = (matchId, id) =>
     })
     .then((response) => response.status)
     .catch((error) => {
+      console.log("error :>> ", error);
       handleElasticsearchError(error);
     });
 
-const store = (user) =>
+const initLikes = (matchId) =>
   esClient
     .index({
       index,
       refresh: "true",
-      body: user,
+      body: {
+        matchId: matchId,
+        count: 1,
+      },
     })
     .then((response) => response.status)
     .catch((error) => {
+      console.log("error :>> ", error);
       handleElasticsearchError(error);
     });
 
 export default {
-  getAllLikes,
   getLikes,
   incrLikes,
+  initLikes,
 };
