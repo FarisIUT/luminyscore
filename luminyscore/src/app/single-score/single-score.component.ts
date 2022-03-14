@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ScoreService } from '../services/score.service';
 import { Subscription } from 'rxjs';
 import { HttpService } from '../services/http.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 
 @Component({
@@ -12,7 +14,8 @@ import { HttpService } from '../services/http.service';
 })
 export class SingleScoreComponent implements OnInit {
   ScoreSubscription: Subscription;
-  constructor(private route: ActivatedRoute, private ScoreService: ScoreService, private http: HttpService) {
+  stadium: any;
+  constructor(private route: ActivatedRoute, private ScoreService: ScoreService, private http: HttpService,private sanitizer: DomSanitizer) {
 
 
   }
@@ -23,8 +26,14 @@ export class SingleScoreComponent implements OnInit {
   score1: any;
   score2: any;
   id: number;
+  linkHome: any;
+  linkAway: any;
+
   status: string;
   timestamp: number;
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
   async ngOnInit(): Promise<void> {
     this.id = this.route.snapshot.params['id'];
     this.ScoreSubscription = this.http.getDataMatchbyId(this.route.snapshot.params['id']).subscribe(
@@ -33,9 +42,13 @@ export class SingleScoreComponent implements OnInit {
         console.log(scores)
         this.equipe1 = Object.values(this.scores.equipe)[0];
         this.equipe2 = Object.values(this.scores.equipe)[1];
-
+    
         this.score1 = Object.values(this.scores.score)[0];
         this.score2 = Object.values(this.scores.score)[1];
+        this.linkAway = this.scores.linkAway;
+        this.linkHome = this.scores.linkHome;
+    
+        this.stadium = '/assets/img/' + this.scores.stadium + '.jpg';
         //console.log("from singlescore")
 
 
@@ -64,7 +77,6 @@ export class SingleScoreComponent implements OnInit {
       }
     );
 
-
     this.ScoreSubscription = this.http.getEventsMatch(this.route.snapshot.params['id']).subscribe(
       (events: any) => {
         //console.log("id params"+this.route.snapshot.params['id'])
@@ -88,3 +100,4 @@ export class SingleScoreComponent implements OnInit {
 function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
