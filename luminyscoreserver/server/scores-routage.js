@@ -16,13 +16,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const scoresRouter = _express.default.Router();
 
 scoresRouter.get('/:timestamp', function (req, res) {
-  console.log("appel score-routage")
-  getDataScores.matchAdder(req.params.timestamp).then((result)=>{console.log("from scores-routages "+result)})
+  //console.log("appel score-routage")
+  //getDataScores.matchAdder(req.params.timestamp).then((result)=>{console.log("from scores-routages "+result)})
   getDataScores.matchAdder(req.params.timestamp).then((result)=>{res.send(result)})
 });
 scoresRouter.get('/s/:id', function (req, res) {
-  console.log("appel score-routage")
-  getDataScores.matchById(req.params.id).then((result)=>{console.log("from scores-routages "+result)})
+  //console.log("appel score-routage")
+  //getDataScores.matchById(req.params.id).then((result)=>{console.log("from scores-routages "+result)})
   getDataScores.matchById(req.params.id).then((result)=>{res.send(result)})
 });
 scoresRouter.get('/events/:id', function (req, res) {

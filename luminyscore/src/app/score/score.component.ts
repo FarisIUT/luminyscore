@@ -20,6 +20,7 @@ export class ScoreComponent implements OnInit,OnChanges {
   @Input() date: string;
   @Input() status: string;
   @Input() idSub: number;
+  live:string;
 
   scoreSubscription: Subscription;
   constructor(private scoreService: ScoreService,private http: HttpService) {
@@ -30,7 +31,10 @@ export class ScoreComponent implements OnInit,OnChanges {
     this.status = (this.status == 'Not Started') ? 'Débute à : ' + this.date : this.status;
     this.status = (this.status == 'First Half') ? '1er Période' : this.status;
     this.status = (this.status == 'Second Half') ? '2ème Période' : this.status;
-
+    this.status = (this.status == 'Halftime') ? 'Mi-temps' : this.status;
+    if(this.status=='First Half' || this.status=='Second Half' || this.status=='Halftime'){
+      this.live="🔴 LIVE"
+    }
 
 
   }

@@ -25,18 +25,17 @@ export class LeaguesManagerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timestamp=1647189649;
+    let timestampTest= new Date();
+    var FirstDay=Math.round(timestampTest.getTime()/1000);
+    this.timestamp=FirstDay;
 
     this.matchdate = new Date(Date.now());
+
     this.showmatchday = this.matchdate.toLocaleDateString("en-GB");
     this.scoreSubscription = this.http.getDataMatch(this.timestamp).subscribe(
       (scores: any[]) => {
         this.scores = scores;
-
-
-        
     });
-    //this.scores = this.scoreService.getScore();
   }
 
   ngOnDestroy() {

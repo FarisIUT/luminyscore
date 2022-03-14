@@ -13,7 +13,6 @@ export class EventsMatchComponent implements OnInit {
   @Input() event:any;
   isAuth: boolean = false;
   constructor(private ScoreService: ScoreService,private http: HttpService) {
-    //console.log("from score-view construc"+this.scoresLeagues);
     setTimeout(() => {
       this.isAuth = true;
     }, 4000);
@@ -26,6 +25,7 @@ export class EventsMatchComponent implements OnInit {
     if(this.event.detail=='Yellow Card'){    txt+=" 🟨 "+this.event.player.name  }
     if(this.event.type=='Goal'){    txt+=" ⚽ "+this.event.player.name+" for "+this.event.team.name  }
     if(this.event.type=='subst'){    txt+=" "+this.event.player.name+" 🔄 "+this.event.assist.name  }
+    if(this.event.type=='Var'){    txt+=" 🎥 "+this.event.detail+" for "+this.event.player.name  }
     this.text=txt;
   }
 

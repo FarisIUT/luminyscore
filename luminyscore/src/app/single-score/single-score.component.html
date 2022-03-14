@@ -1,15 +1,9 @@
-<!-- <div class="centerdiv">
-    <div class="equipes">
-        <h2>{{ equipe1 }}</h2>  <h2>{{ equipe2 }}</h2>
-      </div>
-    <p>Statut : {{ status }}</p>
-    
-</div> -->
 <div class="centerdiv">
   <div class="card">
     <div class="card-body">
-      <h3 class="card-title"><strong>{{ equipe1 }} </strong> {{score1}} - {{score2}} <strong> {{ equipe2 }}</strong></h3>
-      <app-events-match *ngFor="let event of events;" [event]="event"></app-events-match>
+      <app-team id="teamHome" [events]="events1" [team]="equipe1" [home]="True" [linkImage]="linkImgHome" [score]="score1"></app-team>
+      <app-middlematch [stade]="stade" [status]="status" [date]="date"></app-middlematch>
+      <app-team id="teamAway" [events]="events2" [team]="equipe2" [home]="False" [linkImage]="linkImgAway" [score]="score2"></app-team>
       <a routerLink="/scores">Retour à la liste</a>
     </div>
   </div>
